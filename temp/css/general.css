@@ -1,0 +1,234 @@
+/* The WHOLE Xiler Website is under an GNU LESSER GENERAL PUBLIC LICENSE! */
+/* The license can be found in the github repository with the name `LICENSE`! */
+
+::-webkit-scrollbar {
+    width: 11px;
+}
+
+::-webkit-scrollbar-track {
+    /* background: #262626; */
+    background: #404040;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7289da;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a0acd4;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #262626;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+div#content {
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+div#content div.section div {
+    width: 80%;
+    height: 256px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div#content div.section div div.icon,
+div#content div.section div div.icon div.icon-container,
+div#content div.section div div.icon div.icon-container img {
+    width: 256px;
+    border-radius: 30px;
+}
+
+div#content div.section div div.icon div.icon-container img {
+    /* box-shadow: 1px 1px 4px #151515; */
+    -webkit-transition: -webkit-all 0.5s;
+    transition: all 0.4s;
+}
+
+div#content div.section div div.icon div.icon-container img:hover {
+    transform: scale(1.03);
+    -webkit-transform: scale(1.03);
+    /* box-shadow: 3px 3px 8px #151515; */
+}
+
+
+div#content div.section div div.text h1 {
+    margin-top: 0;
+}
+
+@media all and (min-width:1140px) {
+    div#content div.section div div.text {
+        display: flex;
+        align-items: center;
+        height: 256px;
+        width: 40vw;
+        margin-left: 10px;
+        position: relative;
+        float: right;
+    }
+
+    div#content div.section {
+        height: 75vh;
+        /* padding-top: 25vh !important;
+        padding-bottom: 25vh !important; */
+    }
+
+    div#content div.section#welcome {
+        height: 60vh;
+    }
+
+    div#content div.section#offer {
+        padding-top: 10vh;
+        height: 65vh;
+    }
+
+    div#content div.section div.intro,
+    div#content div.section div.offer,
+    div#content div.section div.about {
+        padding-top: 20vh !important;
+    }
+
+    div#content div.section div div.text div.text-container {
+        height: fit-content;
+    }
+
+
+    div#content div.section div div.text {
+        display: flex;
+        align-items: center;
+    }
+
+    div#content div.section div.intro,
+    div#content div.section div.offer {
+        margin-top: 40px;
+    }
+
+    div#content div.section div.offer div.text {
+        float: left;
+    }
+
+    div#content div.section div.intro div.text {
+        float: right;
+    }
+
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
+    }
+
+    .arrow {
+        /* position: absolute;
+        top: 90vh; */
+        position: relative;
+        top: 10vh;
+        width: 2vw;
+        height: 2vw;
+        border: solid #404040;
+        border-radius: 10px;
+        border-width: 0 8px 8px 0;
+        display: inline-block;
+        padding: 5px;
+        transition: all 0.25s ease;
+    }
+
+    .arrow:hover {
+        border-color: white;
+    }
+
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+    
+    .up {
+        transform: rotate(225deg);
+        -webkit-transform: rotate(225deg);
+    }
+}
+
+@media all and (max-width:1140px) {
+    div#content div.section div.intro div.text div.text-container {
+        float: left;
+        width: 80vw;
+    }
+
+    /* div#content div.intro div.text */
+
+    div#content div.section div.intro div.icon {
+        margin-left: auto;
+        margin-right: auto;
+        width: 256px;
+        height: 256px;
+    }
+
+    div#content div.section div.intro div.icon div.icon-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 256px;
+        height: 256px;
+    }
+
+    div#content div.section div {
+        margin-left: auto;
+        margin-left: auto;
+    }
+
+    div#content div.section div div.text,
+    div#content div.section div div.text div.text-container,
+    div#content div.section div div.text div.text-container h1,
+    div#content div.section div div.text div.text-container p {
+        width: 60vw;
+    }
+
+    div#content div.section div div.text div.text-container h1 {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    div#content div.section div div.text div.text-container h1,
+    div#content div.section div div.text div.text-container p {
+        text-align: center;
+    }
+}
+
+.link {
+    color: #7289da;
+    text-decoration: none;
+    transition: all 0.1s ease-in;
+}
+
+
+.link:hover {
+    color: #a0acd4;
+}
+
+.bigger {
+    font-size: larger;
+}
+
+.colored {
+    color: #7289da;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
