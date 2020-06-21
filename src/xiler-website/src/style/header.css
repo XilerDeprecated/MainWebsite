@@ -1,0 +1,55 @@
+/*
+ ©Xiler - Arthurdw
+ Xiler is under a CC0-1.0 License (View the license here: https://legal.xiler.net/license)
+ By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
+*/
+
+:root {
+    --header-background-color: rgb(39, 41, 42);
+}
+
+header {
+    background-color: var(--header-background-color);
+    height: 80px;
+}
+
+header img {
+    height: 70px;
+    padding: 5px 0;
+    position: absolute;
+    left: 75px;
+}
+
+header ul {
+    position: absolute;
+    right: 75px;
+    float: right;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50vw;
+    height: 80px;
+}
+
+header ul li {
+    float: left;
+    padding: 5px;
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+header ul li a {
+    text-decoration: none;
+    font-size: larger;
+    color: var(--text-color);
+    transition: all 0.25s ease;
+    padding: 25px 15px;
+}
+
+header ul li a:hover {
+    color: var(--accent-color-light)
+}

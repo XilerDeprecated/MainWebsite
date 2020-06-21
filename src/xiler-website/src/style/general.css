@@ -1,0 +1,19 @@
+/*
+ ©Xiler - Arthurdw
+ Xiler is under a CC0-1.0 License (View the license here: https://legal.xiler.net/license)
+ By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
+*/
+
+:root {
+    --text-color: rgb(220, 220, 221); 
+    --accent-color: rgb(25, 133, 161);
+    --accent-color-light: rgb(43, 186, 222);
+    --background-color: rgb(70, 73, 76);
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
