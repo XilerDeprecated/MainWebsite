@@ -10,7 +10,6 @@ import ReactDOM from 'react-dom';
 
 // Page Styling:
 import './style/general.css';
-import './style/header.css';
 
 // Import our application:
 import App from './App';

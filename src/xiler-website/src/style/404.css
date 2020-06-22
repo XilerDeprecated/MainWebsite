@@ -1,0 +1,41 @@
+/*
+ ©Xiler - Arthurdw
+ Xiler is under a CC0-1.0 License (View the license here: https://legal.xiler.net/license)
+ By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
+*/
+#PageNotFound {
+    margin: 50px;
+    color: var(--text-color-second);
+}
+
+#PageNotFound h1 {
+    color: var(--text-color);
+    font-size: 50px;
+    margin: 0;
+}
+
+#PageNotFound h1 #errorCode {
+    font-size: 60px;
+    color: var(--accent-color);
+    transition: color 0.1s ease-in-out;
+}
+
+#PageNotFound h1 #errorCode:hover {
+    color: var(--accent-color-light);
+}
+
+#PageNotFound h2 {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+#PageNotFound a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.1s ease-in-out;
+}
+
+#PageNotFound a:hover {
+    color: var(--accent-color-light);
+}
+

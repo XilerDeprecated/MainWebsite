@@ -6,6 +6,7 @@
 
 :root {
     --text-color: rgb(220, 220, 221); 
+    --text-color-second: rgb(197, 195, 198);
     --accent-color: rgb(25, 133, 161);
     --accent-color-light: rgb(43, 186, 222);
     --background-color: rgb(70, 73, 76);

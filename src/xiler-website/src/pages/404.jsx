@@ -7,12 +7,16 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import Header from '../components/Header';
+
+import '../style/404.css'
 
 function PageNotFound() {
     return (
         <main id="content">
+            <Header />
             <div id="PageNotFound">
-                <h1>ERROR <span id="errorCode">404</span></h1>
+                <h1>Oops...<br />ERROR <span id="errorCode">404</span></h1>
                 <h2>Page Not Found</h2>
                 <Link to="/">Return to homepage</Link>
             </div>

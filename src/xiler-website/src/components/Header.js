@@ -7,6 +7,10 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import '../style/header.css';
+
+import HeaderUrl from './utils/HeaderUrl';
+
 class Header extends React.Component {
     render() {
         return (
@@ -14,8 +18,28 @@ class Header extends React.Component {
                 <img id="icon" src="./assets/logo-128x.png" alt="Xiler Icon" />
                 <ul>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="#">Services</Link></li>
-                    <li><Link to="#">Community</Link></li>
+                    <HeaderUrl 
+                        name="Services"
+                        id="li-services"
+                        url="#"
+                        height="310px"
+                        data={[
+                            { name: "Websites", url: "#", target: "_self" },
+                            { name: "Minecraft Servers", url: "#", target: "_self" },
+                            { name: "CS:GO Servers", url: "#", target: "_self" },
+                            { name: "Discord Bots", url: "#", target: "_self" }
+                        ]}
+                    />
+                    <HeaderUrl 
+                        name="Community"
+                        id="li-community"
+                        url="#"
+                        height="184px"
+                        data={[
+                            { name: "Forums", url: "#", target: "_self" },
+                            { name: "Discord", url: "https://dc.xiler.net", target: "_blanc" }
+                        ]}
+                    />
                     <li><Link to="#">Store</Link></li>
                     <li><Link id="login" to="#">Login</Link></li>
                 </ul>

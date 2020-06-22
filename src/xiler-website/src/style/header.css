@@ -5,51 +5,77 @@
 */
 
 :root {
-    --header-background-color: rgb(39, 41, 42);
+  --header-background-color: rgb(39, 41, 42);
 }
 
 header {
-    background-color: var(--header-background-color);
-    height: 80px;
+  background-color: var(--header-background-color);
+  height: 80px;
 }
 
 header img {
-    height: 70px;
-    padding: 5px 0;
-    position: absolute;
-    left: 75px;
+  height: 70px;
+  padding: 5px 0;
+  position: absolute;
+  left: 75px;
 }
 
 header ul {
-    position: absolute;
-    right: 75px;
-    float: right;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 50vw;
-    height: 80px;
+  position: absolute;
+  right: 75px;
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50vw;
+  height: 80px;
 }
 
 header ul li {
-    float: left;
-    padding: 5px;
-    display: block;
-    padding: 0;
-    margin: 0;
+  float: left;
+  padding: 5px;
+  display: block;
+  padding: 0;
+  margin: 0;
+  width: calc(50vw / 5);
+  min-width: 150px;
+  height: 80px;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 header ul li a {
-    text-decoration: none;
-    font-size: larger;
-    color: var(--text-color);
-    transition: all 0.25s ease;
-    padding: 25px 15px;
+  text-decoration: none;
+  font-size: larger;
+  color: var(--text-color);
+  transition: all 0.25s ease;
+  padding: 25px 15px;
+  margin: 0 auto;
 }
 
 header ul li a:hover {
-    color: var(--accent-color-light)
+  color: var(--accent-color-light);
+}
+
+.hoverSection {
+  position: absolute;
+  top: 80px;
+  background-color: var(--header-background-color);
+  display: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: calc(50vw / 5);
+  min-width: 150px;
+}
+
+.hoverSection a {
+  font-size: medium;
+  /* text-align: center; */
+  position: relative;
+  display: block;
+  padding: 15px;
 }
