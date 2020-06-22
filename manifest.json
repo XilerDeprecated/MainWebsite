@@ -1,0 +1,39 @@
+{
+  "dir": "ltr",
+  "lang": "en-US",
+  "name": "Xiler Website",
+  "short_name": "Xiler",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1985A1",
+  "background_color": "#46494C",
+  "orientation": "landscape-primary",
+  "categories": ["hosting", "api", "servers", "gaming", "development"],
+  "icons": [
+    {
+      "src": "assets/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "assets/logo-64x.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "assets/logo-128x.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "assets/logo-256x.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "prefer_related_applications": true,
+  "related_applications": [{
+    "platform": "discord",
+    "url": "https://discord.gg/ytKgGv3"
+  }]
+}
