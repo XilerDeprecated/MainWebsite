@@ -8,6 +8,117 @@
   --header-background-color: rgb(39, 41, 42);
 }
 
+.hamburger {
+  padding: 15.5px;
+  margin: 10px;
+  display: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  overflow: visible;
+}
+
+.hamburger:hover {
+  opacity: 0.7;
+}
+
+.hamburger.is-active .hamburger-box .hamburger-inner,
+.hamburger.is-active .hamburger-box .hamburger-inner::before,
+.hamburger.is-active .hamburger-box .hamburger-inner::after {
+  background-color: var(--accent-color-light);
+}
+
+.hamburger.is-active:hover {
+  opacity: 0.7;
+}
+
+.hamburger-box {
+  width: 50px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  width: 50px;
+  height: 4px;
+  background-color: var(--text-color);
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+  content: "";
+  display: block;
+}
+
+.hamburger-inner::before {
+  top: -10px;
+}
+
+.hamburger-inner::after {
+  bottom: -10px;
+}
+
+.hamburger--collapse .hamburger-inner {
+  top: auto;
+  bottom: 0;
+  transition-duration: 0.13s;
+  transition-delay: 0.13s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger--collapse .hamburger-inner::after {
+  top: -20px;
+  transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+    opacity 0.1s linear;
+}
+
+.hamburger--collapse .hamburger-inner::before {
+  transition: top 0.12s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+    transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger--collapse.is-active .hamburger-inner {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+  transition-delay: 0.22s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.hamburger--collapse.is-active .hamburger-inner::after {
+  top: 0;
+  opacity: 0;
+  transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+    opacity 0.1s 0.22s linear;
+}
+
+.hamburger--collapse.is-active .hamburger-inner::before {
+  top: 0;
+  transform: rotate(-90deg);
+  transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+    transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
 header {
   background-color: var(--header-background-color);
   height: 80px;
@@ -22,7 +133,7 @@ header img {
 
 header ul {
   position: absolute;
-  right: 75px;
+  right: 75px !important;
   float: right;
   list-style: none;
   margin: 0;
@@ -31,6 +142,7 @@ header ul {
   justify-content: space-evenly;
   align-items: center;
   width: 50vw;
+  min-width: 700px;
   height: 80px;
 }
 
@@ -78,4 +190,67 @@ header ul li a:hover {
   position: relative;
   display: block;
   padding: 15px;
+}
+
+@media (max-width: 950px) {
+  header,
+  #headerKeeperMobile {
+    width: 100vw;
+  }
+
+  #headerKeeperMobile {
+    position: absolute;
+    background-color: var(--header-background-color);
+    height: 80px;
+  }
+
+  header,
+  header img,
+  header button,
+  #headerKeeperMobile {
+    position: absolute;
+    z-index: 10000 !important;
+  }
+
+  header ul {
+    /* display: none !important; */
+    display: block;
+    position: absolute;
+    width: 100vw !important;
+    left: 0;
+    height: fit-content;
+    border-bottom: 3px solid var(--header-background-color);
+    top: -323px;
+    transition: top 0.5s ease-in-out;
+    z-index: 1 !important;
+  }
+
+  header ul.active {
+    top: 80px;
+  }
+
+  header ul li a {
+    width: 100vw;
+  }
+
+  header ul li {
+    display: block;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color-darker);
+    transition: background-color 0.25s ease-in-out;
+  }
+
+  header ul li:hover {
+    background-color: var(--background-color);
+  }
+
+  header img {
+    left: calc(50vw - 70px / 2);
+  }
+
+  .hamburger {
+    display: inline-block;
+  }
 }

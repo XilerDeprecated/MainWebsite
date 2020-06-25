@@ -10,6 +10,7 @@
     --accent-color: rgb(25, 133, 161);
     --accent-color-light: rgb(43, 186, 222);
     --background-color: rgb(70, 73, 76);
+    --background-color-darker: rgb(49, 51, 53);
 }
 
 body {
