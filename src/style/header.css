@@ -142,7 +142,7 @@ header ul {
   justify-content: space-evenly;
   align-items: center;
   width: 50vw;
-  min-width: 700px;
+  max-width: 700px;
   height: 80px;
 }
 
@@ -193,9 +193,22 @@ header ul li a:hover {
 }
 
 @media (max-width: 950px) {
+  header {
+    position: fixed !important;
+  }
+
   header,
-  #headerKeeperMobile {
-    width: 100vw;
+  #headerKeeperMobile,
+  #TextContent {
+    width: 100vw !important;
+  }
+
+  #TextContent #LicenseText {
+    width: 80%;
+  }
+
+  #TextContent #LicenseText h1 {
+    text-align: center;
   }
 
   #headerKeeperMobile {
@@ -208,6 +221,7 @@ header ul li a:hover {
   header img,
   header button,
   #headerKeeperMobile {
+    top: 0;
     position: absolute;
     z-index: 10000 !important;
   }
