@@ -20,7 +20,7 @@ class HeaderUrl extends React.Component {
     }
 
     hoverHandler = () => {
-        if (document.documentElement.clientWidth < 950) return;
+        if (document.documentElement.clientWidth < 1200) return;
         const section = document.getElementById(`${this.props.id}-section`);
         const main = document.getElementById(this.props.id);
         section.style.display = "block";
