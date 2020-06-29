@@ -5,6 +5,8 @@
 */
 import React from 'react';
 
+import '../style/main.css'
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -12,6 +14,7 @@ function HomePage() {
     return (
         <div id="HomePage">
             <Header />
+            <main></main>
             <Footer />
         </div>
     );

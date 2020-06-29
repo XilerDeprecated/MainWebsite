@@ -4,7 +4,8 @@
  By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
 */
 #PageNotFound {
-    margin: 50px;
+    margin: 100px 50px;
+    height: calc(100vh - 400px);
     color: var(--text-color-second);
 }
 

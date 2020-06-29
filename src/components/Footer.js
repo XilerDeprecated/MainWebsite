@@ -22,14 +22,6 @@ class Footer extends React.Component {
     this.updateTheme();
     return (
       <footer>
-        <div id="copyright">
-          <div id="copyright-container">
-            <img src="./assets/logo-64x.png" alt="Copyright icon" />
-            {/* TODO: create c icon in photoshop */}
-            <p>© Copyright 2020-{new Date().getFullYear()}</p>
-            <p>Xiler</p>
-          </div>
-        </div>
         <div id="footer-container">
           <FooterSection
             title="contact"
@@ -70,6 +62,13 @@ class Footer extends React.Component {
               </button>,
             ]}
           />
+        </div>
+        <div id="copyright">
+          <div id="copyright-container">
+            <img src="./assets/logo-64x.png" alt="Copyright icon" />
+            <p>Copyright ©{new Date().getFullYear()}</p>
+            <p>Xiler</p>
+          </div>
         </div>
       </footer>
     );

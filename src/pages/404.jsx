@@ -8,6 +8,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 import '../style/404.css'
 
@@ -20,6 +21,7 @@ function PageNotFound() {
                 <h2>Page Not Found</h2>
                 <Link to="/">Return to homepage</Link>
             </div>
+            <Footer />
         </main>
     );
 }
