@@ -5,22 +5,34 @@
 */
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 class HoverSection extends React.Component {
   render() {
-      return (
-        <div id={this.props.id} className="hoverSection">
-          {this.props.data.map((item) => (
-            <a
-              key={this.props.data.indexOf(item)}
-              href={item.url}
-              alt={`Url for ${item.name}!`}
-              target={item.target}
-            >
-              {item.name}
-            </a>
-          ))}
-        </div>
-      );
+    return (
+      <div id={this.props.id} className="hoverSection">
+        {this.props.data.map((item) => {
+            return item.route ? (
+              <a
+                key={this.props.data.indexOf(item)}
+                href={item.url}
+                alt={`Url for ${item.name}!`}
+                target={item.target}
+              >
+                {item.name}
+              </a>
+            ) : (
+              <Link
+                key={this.props.data.indexOf(item)}
+                to={item.url}
+                alt={`Url for ${item.name}!`}
+              >
+                {item.name}
+              </Link>
+            );
+        })}
+      </div>
+    );
   }
 }
 

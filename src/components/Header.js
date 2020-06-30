@@ -47,10 +47,10 @@ class Header extends React.Component {
             url="#"
             height="310px"
             data={[
-              { name: "Websites", url: "#", target: "_self" },
-              { name: "Minecraft Servers", url: "#", target: "_self" },
-              { name: "CS:GO Servers", url: "#", target: "_self" },
-              { name: "Discord Bots", url: "#", target: "_self" },
+              { name: "Websites", url: "services/websites", route: true },
+              { name: "Minecraft Servers", url: "services/minecraft", route: true },
+              { name: "CS:GO Servers", url: "services/cs", route: true },
+              { name: "Discord Bots", url: "services/discord", route: true },
             ]}
           />
           <HeaderUrl
@@ -59,20 +59,21 @@ class Header extends React.Component {
             url="#"
             height="184px"
             data={[
-              { name: "Forums", url: "#", target: "_self" },
-              { name: "Servers", url: "community/servers", target: "_self" },
+              { name: "Forums", url: "https://forum.xiler.net/", target: "_self", route: false },
+              { name: "Servers", url: "community/servers", route: true },
               {
                 name: "Discord",
                 url: "https://dc.xiler.net",
                 target: "_blanc",
+                route: false
               },
             ]}
           />
           <li>
-            <Link to="#">Store</Link>
+            <a href="https://buy.xiler.net/">Store</a>
           </li>
           <li>
-            <Link id="login" to="#">
+            <Link id="login" to="/login">
               Login
             </Link>
           </li>

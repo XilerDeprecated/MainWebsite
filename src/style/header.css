@@ -120,8 +120,10 @@
 }
 
 header {
+  position: fixed;
   background-color: var(--header-background-color);
   height: 80px;
+  width: 100vw;
 }
 
 header img {
