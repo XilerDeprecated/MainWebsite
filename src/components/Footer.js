@@ -33,18 +33,18 @@ class Footer extends React.Component {
           <FooterSection
             title="services"
             items={[
-              <Link to="#">Websites</Link>,
-              <Link to="#">Minecraft Servers</Link>,
-              <Link to="#">CS:GO Servers</Link>,
-              <Link to="#">Discord Bots</Link>,
+              <Link to="services/websites">Websites</Link>,
+              <Link to="services/minecraft">Minecraft Servers</Link>,
+              <Link to="services/cs">CS:GO Servers</Link>,
+              <Link to="services/discord">Discord Bots</Link>,
             ]}
           />
           <FooterSection
             title="community"
             items={[
-              <Link to="#">Forums</Link>,
-              <Link to="#">Servers</Link>,
-              <Link to="#">Discord</Link>,
+              <a href="https://forum.xiler.net/">Forums</a>,
+              <Link to="community/servers">Servers</Link>,
+              <a href="https://dc.xiler.net">Discord</a>,
             ]}
           />
           <FooterSection
