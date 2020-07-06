@@ -120,6 +120,7 @@
 }
 
 header {
+  top: 0 !important;
   position: fixed;
   background-color: var(--header-background-color);
   height: 80px;
