@@ -134,6 +134,10 @@ header img {
   left: 75px;
 }
 
+header, header img {
+  z-index: 10000 !important;
+}
+
 header ul {
   position: absolute;
   right: 75px !important;
