@@ -3,18 +3,21 @@
  Xiler is under a CC0-1.0 License (View the license here: https://legal.xiler.net/license)
  By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
 */
-import React from 'react';
+import React from "react";
 
 import {
     BrowserRouter as Router,
     Route,
     Switch,
     Redirect
-} from 'react-router-dom';
+} from "react-router-dom";
 
 // Pages:
-import HomePage from './pages/'
-import PageNotFound from './pages/404'
+import HomePage from "./pages/"
+import PageNotFound from "./pages/404"
+
+// Discord Bot community pages:
+import EmbedGenerator from "./pages/community/discord/generator"
 
 class App extends React.Component {
     render() {
@@ -23,9 +26,11 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/404" component={PageNotFound} />
-                    <Route exact path='/license' component={() => { window.location.href = 'https://legal.xiler.net/license'; return null;  }} />
-                    <Route exact path='/tos' component={() => { window.location.href = 'https://legal.xiler.net/ToS'; return null; }} />
-                    <Redirect to="/404" />
+                    <Route exact path="/community/dc/embed_generator" component={EmbedGenerator} />
+                    <Route exact path="/license" component={() => { window.location.href = "https://legal.xiler.net/license"; return null;  }} />
+                    <Route exact path="/tos" component={() => { window.location.href = "https://legal.xiler.net/ToS"; return null; }} />
+                    <Redirect exact path="/community/dc" to="/community/dc/embed_generator" />
+                    {/* <Redirect to="/404" /> */}
                 </Switch>
             </Router>
         );
