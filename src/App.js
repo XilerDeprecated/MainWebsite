@@ -29,7 +29,7 @@ class App extends React.Component {
                     <Route exact path="/community/dc/embed_generator" component={EmbedGenerator} />
                     <Route exact path="/license" component={() => { window.location.href = "https://legal.xiler.net/license"; return null;  }} />
                     <Route exact path="/tos" component={() => { window.location.href = "https://legal.xiler.net/ToS"; return null; }} />
-                    <Redirect exact path="/community/dc" to="/community/dc/embed_generator" />
+                    <Redirect exact path="/community/discord" to="/community/dc/embed_generator" />
                     {/* <Redirect to="/404" /> */}
                 </Switch>
             </Router>

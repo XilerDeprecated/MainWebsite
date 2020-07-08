@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 function HomePage() {
     return (
         <div id="HomePage">
+            <title>Xiler</title>
             <Header />
             <main></main>
             <Footer />

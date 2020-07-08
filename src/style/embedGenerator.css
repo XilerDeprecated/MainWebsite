@@ -1,0 +1,124 @@
+/*
+ ©Xiler - Arthurdw
+ Xiler is under a CC0-1.0 License (View the license here: https://legal.xiler.net/license)
+ By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
+*/
+
+main {
+  margin: 100px 50px 50px 50px;
+}
+
+#preview {
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#preview .message {
+  position: absolute;
+  left: 72px;
+  top: 4px;
+}
+
+#preview .preview-wrapper {
+  margin-top: 17px;
+  position: relative;
+  background-color: #36393e;
+  padding: 50px;
+  color: #fff;
+}
+
+#preview .preview-wrapper:hover {
+  background-color: #32353b;
+}
+
+#preview .preview-wrapper img {
+  position: absolute;
+  left: 16px;
+  top: 4px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  flex: 0 0 auto;
+}
+
+#preview .preview-wrapper img:hover {
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.16));
+  cursor: pointer;
+}
+
+.prev-data {
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.prev-data p.bot {
+  display: flex;
+  align-items: center;
+  margin: 3px;
+  float: left;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.prev-data p.bot:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.bot-tag {
+  float: left;
+  line-height: 0.9375rem;
+  position: relative;
+  font-weight: 500;
+  outline: 0;
+  text-transform: uppercase;
+  white-space: break-spaces;
+  background-color: #7289da;
+  border-radius: 3px;
+  font-size: 10px;
+  padding: 1px 3px 1px 3px;
+  margin: 5px 0 0 6px;
+}
+
+.bot-tag {
+  cursor: text;
+}
+
+.embed-wrapper {
+  min-height: 62px;
+  min-width: 62px;
+}
+
+.embed-color {
+  float: left;
+  width: 4px;
+  height: 100%;
+  min-height: 62px;
+  background-color: #4f545c;
+  border-radius: 3px 0 0 3px;
+}
+
+.embed-content {
+  float: left;
+  min-width: 48px;
+  min-height: 62px;
+  background-color: #2f3136;
+  border-radius: 0 3px 3px 0;
+}
+
+.date {
+  float: left;
+  height: 22px;
+  display: flex;
+  align-items: flex-end;
+  margin: 3px 3px 3px 10px;
+  font-size: 12px;
+  color: #72767D;
+  cursor: default;
+}
