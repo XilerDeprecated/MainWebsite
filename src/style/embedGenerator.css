@@ -21,7 +21,7 @@ a:hover {
   text-decoration: underline;
 }
 
-#preview {
+#preview, #inputs {
   position: relative;
 }
 
@@ -207,6 +207,7 @@ a:hover {
   overflow: hidden;
   position: relative;
   margin: 0 24px 0 -19px;
+  cursor: default;
   /* position: absolute; */
 }
 

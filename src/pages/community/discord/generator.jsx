@@ -10,6 +10,7 @@ import "../../../style/embedGenerator.css";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import DiscordMessage from "../../../components/DiscordMessage";
 
 /*
 XilerEmbed-1111abcd.1111abcd|
@@ -35,13 +36,6 @@ XilerEmbed-1111abcd.1111abcd|
 }
 */
 
-async function performClick() {
-  const image = document.querySelector("#preview img");
-  image.style.top = "5px";
-  await new Promise((r) => setTimeout(r, 50));
-  image.style.top = "4px";
-}
-
 function EmbedGenerator() {
   return (
     <div id="EmbedGenerator">
@@ -54,51 +48,31 @@ function EmbedGenerator() {
       <main>
         <div id="inputs"></div>
         <div id="preview">
-          <div className="discord-message">
-            <div className="discord-message-wrapper">
-              <img
-                onClick={performClick}
-                src="/assets/logoUsable-64x.png"
-                alt="The Xiler icon"
-              />
-              <div className="message">
-                <div className="prev-data">
-                  <p className="bot">Xiler</p>
-                  <p className="bot-tag">bot</p>
-                  <p className="date">Today at 20:00</p>
-                </div>
-                <div className="message-content">
-                  <div className="no-embed">
-                    <p>
-                      Hello, World
-                      <br />
-                      Foo Bar
-                    </p>
-                  </div>
-                  <div className="embed-color">
-                    <div className="embed-content">
-                      <div className="author">
-                        <img
-                          src="https://avatars3.githubusercontent.com/u/38541241?s=460&u=60681c780526f228f457812b2fdd045724d32a11&v=4"
-                          alt="Author icon"
-                          className="author-avatar"
-                        />
-                        <a href="/">Author name (can point to URL)</a>
-                      </div>
-                      <a href="/" className="title">Title</a>
-                      <div className="description">
-                        <p>
-                          Foo Bar
-                          <br />
-                          Hello, World
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <DiscordMessage
+            sender={{
+              icon: "/assets/logoUsable-64x.png",
+              name: "Xiler",
+              isBot: true,
+              date: `Today at ${new Date().getHours()}:${new Date().getMinutes()}`,
+            }}
+            message={{
+              noEmbed: ["Hello, World", "Foo Bar"],
+              embed: {
+                color: "#4f545c",
+                author: {
+                  icon:
+                    "https://avatars3.githubusercontent.com/u/38541241?s=460&u=60681c780526f228f457812b2fdd045724d32a11&v=4",
+                  name: "Author name (can point to URL)",
+                  url: "/",
+                },
+                title: {
+                  text: "Title",
+                  url: "/",
+                },
+                description: ["Foo Bar", "Hello, World"],
+              },
+            }}
+          />
         </div>
         <div id="output"></div>
       </main>
