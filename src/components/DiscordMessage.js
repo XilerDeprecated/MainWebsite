@@ -34,7 +34,7 @@ class DiscordMessage extends React.Component {
             <div className="message-content">
               <div className="no-embed">
                 {this.props.message.noEmbed.map((item) => (
-                  <p>{item}</p>
+                  <p key={(this.props.message.noEmbed).indexOf(item)}>{item}</p>
                 ))}
               </div>
               <div className="embed-color">
@@ -57,7 +57,7 @@ class DiscordMessage extends React.Component {
                   </a>
                   <div className="description">
                     {this.props.message.embed.description.map((item) => (
-                      <p>{item}</p>
+                      <p key={(this.props.message.embed.description).indexOf(item)}>{item}</p>
                     ))}
                   </div>
                 </div>
