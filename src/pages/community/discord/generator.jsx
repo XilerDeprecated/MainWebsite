@@ -69,7 +69,7 @@ function EmbedGenerator() {
                   text: "Title",
                   url: "/",
                 },
-                description: "```css foo .bar {\n   color: \"test\";\n}```",
+                description: "```css foo[test] .bar {\n   color: \"test\";\n}```",
               },
             }}
           />

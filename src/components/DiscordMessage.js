@@ -34,10 +34,28 @@ function createCodeBlock(message, inEmbed, ...form) {
   );
 }
 
+function getFollowupUntilChar(message, character, index) {
+  let extraMSG = [];
+  for (let i = index; i < message.length; i++) {
+    if (message[i] === character) {
+      extraMSG.push(message[i]);
+      delete message[i];
+      if (i !== index) {
+        break;
+      }
+    } else {
+      extraMSG.push(message[i]);
+      delete message[i];
+    }
+  }
+  return [message, extraMSG.join("")]
+}
+
 function parseData(message, type) {
+  let req;
   switch (type) {
     case "css":
-      message = message.split(/([:.{}'";\n])/);
+      message = message.split(/([:.{}'";#()[\]\n])/);
       // console.log(message);
       let data = [];
       message.forEach((item, index) => {
@@ -53,6 +71,7 @@ function parseData(message, type) {
             }
             break;
           case ".":
+          case "#":
             data[index] = (
               <span key={index} className="lightblue">
                 .{message[index + 1]}
@@ -62,6 +81,8 @@ function parseData(message, type) {
             break;
           case "{":
           case "}":
+          case "(":
+          case ")":
           case ";":
           case " ":
           case "\n":
@@ -69,23 +90,20 @@ function parseData(message, type) {
             break;
           case "'":
           case '"':
-            let extraMSG = [];
-            for (let i = index; i < message.length; i++) {
-              if (message[i] === item) {
-                extraMSG.push(message[i]);
-                delete message[i];
-                if (i !== index) {
-                  break;
-                }
-              } else {
-                extraMSG.push(message[i]);
-                delete message[i];
-              }
-            }
-            console.log(extraMSG.join(""));
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0]
             data[index] = (
               <span key={index} className="light-aqua">
-                {extraMSG.join("")}
+                {req[1]}
+              </span>
+            );
+            break;
+          case '[':
+            req = getFollowupUntilChar(message, "]", index);
+            message = req[0]
+            data[index] = (
+              <span key={index} className="orange">
+                {req[1]}
               </span>
             );
             break;
@@ -100,7 +118,10 @@ function parseData(message, type) {
       });
       // console.log(data);
       return data;
+    // case "asciidoc":
+    //   break;
     default:
+      break;
   }
 }
 
