@@ -56,7 +56,7 @@ function EmbedGenerator() {
               date: `Today at ${new Date().getHours()}:${new Date().getMinutes()}`,
             }}
             message={{
-              noEmbed: ["Hello, World", "Foo Bar"],
+              noEmbed: "Hello, World\nFoo Bar",
               embed: {
                 color: "#4f545c",
                 author: {
@@ -69,7 +69,7 @@ function EmbedGenerator() {
                   text: "Title",
                   url: "/",
                 },
-                description: ["Foo Bar", "Hello, World"],
+                description: "```css foo .bar {\n   color: \"test\";\n}```",
               },
             }}
           />

@@ -21,7 +21,8 @@ a:hover {
   text-decoration: underline;
 }
 
-#preview, #inputs {
+#preview,
+#inputs {
   position: relative;
 }
 
@@ -228,4 +229,73 @@ a:hover {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.green {
+  color: #859900;
+}
+
+.light-aqua {
+  color: #2aa198;
+}
+
+.lightblue {
+  color: #268bd2;
+}
+
+.orange-brown {
+  color: #b58900;
+}
+
+.orange {
+  color: #cb4b16;
+}
+
+.red {
+  color: #dc322f;
+}
+
+.dark-blue {
+  background: #073642;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.code-block {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  text-indent: 0;
+  white-space: pre-wrap;
+  background-color: #2f3136;
+  border: 1px solid #202225;
+  border-radius: 4px;
+}
+
+.code-block-wrapper {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #b9bbbe;
+  background-color: #2f3136;
+}
+
+.code-block-in-embed {
+  background-color: #202225;
+}
+
+.code-line {
+  white-space: pre-wrap;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  text-indent: 0;
+  border-radius: 3px;
+  color: #b9bbbe;
+  background-color: #202225;
+  /* border: 0 2px 0 2px solid #202225; */
 }
