@@ -16,11 +16,15 @@ async function performClick() {
 
 class DiscordMessage extends React.Component {
   render() {
-      root.style.setProperty("--embed-color", this.props.message.embed.color)
+    root.style.setProperty("--embed-color", this.props.message.embed.color);
     return (
       <div className="discord-message">
         <div className="discord-message-wrapper">
-          <img onClick={performClick} src={this.props.sender.icon} alt="Sender icon"/>
+          <img
+            onClick={performClick}
+            src={this.props.sender.icon}
+            alt="Sender icon"
+          />
           <div className="message">
             <div className="prev-data">
               <p className="bot">{this.props.sender.name}</p>

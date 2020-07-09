@@ -111,6 +111,7 @@ a:hover {
   /* top: 25px; */
   /* height: fit-content; */
   padding-bottom: 10px;
+  width: calc(90vw - 200px);
 }
 
 .bot-tag {
@@ -136,6 +137,7 @@ a:hover {
   word-break: break-all;
   white-space: normal;
   margin-bottom: 5px;
+  /* width: ; */
 }
 
 .description {
