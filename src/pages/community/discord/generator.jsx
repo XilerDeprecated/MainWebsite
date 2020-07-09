@@ -69,7 +69,7 @@ function EmbedGenerator() {
                   text: "Title",
                   url: "/",
                 },
-                description: "```coffeescript Blue = ->\n\"Cyan\"```",
+                description: "```asciidoc = Blue =\nblue above equals signs\n=====\nblue above dashes\n-----\n[Orange]\nOrange:: grey\n- hyphen\n* bullet point```",
               },
             }}
           />
