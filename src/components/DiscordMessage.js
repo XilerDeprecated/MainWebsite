@@ -289,6 +289,50 @@ function parseData(message, type) {
         }
       });
       return data;
+    case "coffeescript":
+      message = message.split(/(["'=])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "=":
+            console.log(message);
+            if (message[index + 1].trim().startsWith("->")) {
+              data[index - 1] = (
+                <span key={index} className="lightblue">{message[index - 1]}</span>
+              );
+            }
+            console.log(index)
+            console.log(message);
+            break;
+          case "'":
+          case '"':
+            let extraMSG = [];
+            for (let i = index; i < message.length; i++) {
+              if (message[i] === item) {
+                extraMSG.push(message[i]);
+                delete message[i];
+                if (i !== index) {
+                  break;
+                }
+              } else {
+                console.log(message[i]);
+                extraMSG.push(message[i]);
+                delete message[i];
+              }
+            }
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {extraMSG.join("")}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
     default:
       break;
   }
@@ -317,6 +361,12 @@ function generateTextUsable(message, inEmbed = false) {
     } else if (message.startsWith("```bash ")) {
       return createCodeBlock(
         parseData(message.substring(8, message.length - 3), "bash"),
+        inEmbed,
+        "code-block-wrapper"
+      );
+    } else if (message.startsWith("```coffeescript ")) {
+      return createCodeBlock(
+        parseData(message.substring(16, message.length - 3), "coffeescript"),
         inEmbed,
         "code-block-wrapper"
       );

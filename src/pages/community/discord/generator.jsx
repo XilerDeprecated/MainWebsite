@@ -69,7 +69,7 @@ function EmbedGenerator() {
                   text: "Title",
                   url: "/",
                 },
-                description: "```bash $Yellow\n\"Cyan\"\n#Gray\nthisIsBlue(){}\n#!Bash```",
+                description: "```coffeescript Blue = ->\n\"Cyan\"```",
               },
             }}
           />
