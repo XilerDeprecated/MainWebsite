@@ -281,6 +281,12 @@ a:hover {
   border-radius: 4px;
 }
 
+@media (min-width: 1100px) {
+  .code-block {
+    max-width: calc(90vw - 300px);
+  }
+}
+
 .code-block-wrapper {
   display: block;
   overflow-x: auto;
