@@ -56,17 +56,17 @@ function EmbedGenerator() {
               date: `Today at ${new Date().getHours()}:${new Date().getMinutes()}`,
             }}
             message={{
-              noEmbed: "Hello, World\nFoo Bar",
+              noEmbed: "```autohotkey A_Red\n%Yellow%\n^Orange::\n123```",
               embed: {
                 color: "#4f545c",
                 author: {
                   icon:
                     "https://avatars3.githubusercontent.com/u/38541241?s=460&u=60681c780526f228f457812b2fdd045724d32a11&v=4",
-                  name: "Author name (can point to URL)",
-                  url: "/",
+                  name: "Created By Arthurdw",
+                  url: "https://github.com/Arthurdw",
                 },
                 title: {
-                  text: "Title",
+                  text: "Well, this is just an example embed that is temporary :)",
                   url: "/",
                 },
                 description: "```asciidoc = Blue =\nblue above equals signs\n=====\nblue above dashes\n-----\n[Orange]\nOrange:: grey\n- hyphen\n* bullet point```",
