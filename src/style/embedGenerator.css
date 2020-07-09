@@ -4,34 +4,32 @@
  By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
 */
 
+:root {
+  --embed-color: #4f545c;
+}
+
 main {
   margin: 100px 50px 50px 50px;
 }
 
 #preview {
   position: relative;
-  font-family: 'Open Sans', sans-serif;
-}
-
-#preview .message {
-  position: absolute;
-  left: 72px;
-  top: 4px;
-}
-
-#preview .preview-wrapper {
-  margin-top: 17px;
-  position: relative;
-  background-color: #36393e;
-  padding: 50px;
-  color: #fff;
 }
 
 #preview .preview-wrapper:hover {
   background-color: #32353b;
 }
 
-#preview .preview-wrapper img {
+.discord-message-wrapper .message {
+  /* position: absolute; */
+  /* left: 72px;
+  top: 4px; */
+  margin: 4px 0 0 72px;
+  /* height: 150px; */
+  width: calc(90vw - 172px);
+}
+
+.discord-message-wrapper img {
   position: absolute;
   left: 16px;
   top: 4px;
@@ -44,14 +42,40 @@ main {
   flex: 0 0 auto;
 }
 
-#preview .preview-wrapper img:hover {
+.discord-message-wrapper img:hover {
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.16));
   cursor: pointer;
 }
 
+.discord-message {
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+  color: #dcddde;
+  overflow: auto;
+}
+
+.discord-message,
+.discord-message-wrapper {
+  background-color: #36393e;
+}
+
+.discord-message-wrapper {
+  position: relative;
+  margin-top: 17px;
+  width: 100%;
+  min-height: 60px;
+  /* height: 500px; */
+}
+
+.discord-message-wrapper:hover {
+  background-color: #32353b;
+}
+
 .prev-data {
-  cursor: pointer;
+  cursor: default;
   flex: 0 0 auto;
+  color: #fff;
+  height: 28px;
 }
 
 .prev-data p.bot {
@@ -69,6 +93,15 @@ main {
 .prev-data p.bot:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.message-content {
+  position: relative;
+  display: inline-block;
+  /* position: absolute; */
+  /* top: 25px; */
+  /* height: fit-content; */
+  padding-bottom: 10px;
 }
 
 .bot-tag {
@@ -90,26 +123,45 @@ main {
   cursor: text;
 }
 
-.embed-wrapper {
-  min-height: 62px;
-  min-width: 62px;
+.no-embed {
+  word-break: break-all;
+  white-space: normal;
+  margin-bottom: 5px;
+}
+
+.description {
+  /* min-height: 38px; */
+  min-width: 34px;
+  width: calc(90vw - 200px);
+  max-width: 516px;
+  height: fit-content;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.description p {
+  margin: 0;
+  padding: 0;
 }
 
 .embed-color {
   float: left;
-  width: 4px;
+  /* width: 4px; */
   height: 100%;
-  min-height: 62px;
-  background-color: #4f545c;
-  border-radius: 3px 0 0 3px;
+  background-color: var(--embed-color);
+  border-radius: 3px;
 }
 
 .embed-content {
   float: left;
-  min-width: 48px;
-  min-height: 62px;
+  /* min-height: 38px; */
+  min-width: 34px;
+  /* width: calc(100% - 4px); */
+  padding: 8px 16px 16px 12px;
+  height: 100%;
   background-color: #2f3136;
   border-radius: 0 3px 3px 0;
+  margin: 0 0 0 4px;
 }
 
 .date {
@@ -119,6 +171,11 @@ main {
   align-items: flex-end;
   margin: 3px 3px 3px 10px;
   font-size: 12px;
-  color: #72767D;
+  color: #72767d;
   cursor: default;
+}
+
+.no-embed p {
+  margin: 0;
+  padding: 0;
 }

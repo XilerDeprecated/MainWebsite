@@ -54,21 +54,48 @@ function EmbedGenerator() {
       <main>
         <div id="inputs"></div>
         <div id="preview">
-          <div className="preview-wrapper">
-            <img
-              onClick={performClick}
-              src="/assets/logoUsable-64x.png"
-              alt="The Xiler icon"
-            />
-            <div className="message">
-              <div className="prev-data">
-                <p className="bot">Xiler</p>
-                <p className="bot-tag">bot</p>
-                <p className="date">Today at 20:00</p>
-              </div>
-              <div className="embed-wrapper">
-                <div className="embed-color"></div>
-                <div className="embed-content"></div>
+          <div className="discord-message">
+            <div className="discord-message-wrapper">
+              <img
+                onClick={performClick}
+                src="/assets/logoUsable-64x.png"
+                alt="The Xiler icon"
+              />
+              <div className="message">
+                <div className="prev-data">
+                  <p className="bot">Xiler</p>
+                  <p className="bot-tag">bot</p>
+                  <p className="date">Today at 20:00</p>
+                </div>
+                <div className="message-content">
+                  <div className="no-embed">
+                    <p>
+                      Hello, World
+                      <br />
+                      Foo Bar
+                    </p>
+                  </div>
+                  <div className="embed-color">
+                    <div className="embed-content">
+                      {/* <div className="author">
+                        <img
+                          src="/assets/logoUsable-64x.png"
+                          alt="Author icon"
+                          className="author-avatar"
+                        />
+                        <a href="/">Author name (can point to URL)</a>
+                      </div>
+                      <a href="/" className="title"></a> */}
+                      <div className="description">
+                        <p>
+                          Foo Bar
+                          <br />
+                          Hello, World
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
