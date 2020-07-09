@@ -85,7 +85,7 @@ function EmbedGenerator() {
                         />
                         <a href="/">Author name (can point to URL)</a>
                       </div>
-                      <a href="/" className="title"></a>
+                      <a href="/" className="title">Title</a>
                       <div className="description">
                         <p>
                           Foo Bar

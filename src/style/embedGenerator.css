@@ -12,6 +12,15 @@ main {
   margin: 100px 50px 50px 50px;
 }
 
+a {
+  color: #00b0f4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 #preview {
   position: relative;
 }
@@ -136,7 +145,10 @@ main {
   max-width: 516px;
   height: fit-content;
   word-break: break-all;
-  white-space: normal;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  white-space: pre-line;
 }
 
 .description p {
@@ -207,4 +219,10 @@ main {
 
 .author a:hover {
   text-decoration: underline;
+}
+
+.title {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
 }
