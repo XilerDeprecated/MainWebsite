@@ -69,7 +69,7 @@ function EmbedGenerator() {
                   text: "Title",
                   url: "/",
                 },
-                description: "```autohotkey A_Red\n%Yellow%\n^Orange::\n123```",
+                description: "```bash $Yellow\n\"Cyan\"\n#Gray\nthisIsBlue(){}\n#!Bash```",
               },
             }}
           />

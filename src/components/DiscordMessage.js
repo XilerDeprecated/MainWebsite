@@ -190,7 +190,6 @@ function parseData(message, type) {
     case "autohotkey":
       message = message.split(/([A%^:1-9])/);
       data = [];
-      console.log(message);
       message.forEach((item, index) => {
         switch (item) {
           case "A":
@@ -217,13 +216,71 @@ function parseData(message, type) {
             message = req[0];
             data[index] = (
               <span key={index} className="orange">
-                {req[1]}{message[index + 4]}
+                {req[1]}
+                {message[index + 4]}
               </span>
             );
             delete message[index + 4];
             break;
           case (item.match(/[1-9]/) || {}).input:
-            data[index] = <span className="light-aqua">{message[index]}</span>
+            data[index] = <span className="light-aqua">{message[index]}</span>;
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    case "bash":
+      message = message.split(/([$"'#()\n])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "$":
+            data[index] = (
+              <span key={index} className="orange-brown">
+                :{message[index + 1]}
+              </span>
+            );
+            delete message[index + 1];
+            break;
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {req[1]}
+              </span>
+            );
+            break;
+          case "#":
+            if (message[index + 1] === "!Bash") {
+              data[index] = (
+                <span key={index} className="orange">
+                  {message[index] + message[index + 1]}
+                </span>
+              );
+              delete message[index + 1];
+            } else {
+              req = getFollowupUntilChar(message, "\n", index);
+              message = req[0];
+              data[index] = (
+                <span key={index} className="gray">
+                  {req[1]}
+                </span>
+              );
+            }
+            break;
+          case "(":
+            if (message[index + 2] === ")") {
+              data[index - 1] = (
+                <span key={index} className="lightblue">
+                  {message[index - 1]}
+                </span>
+              );
+            }
             break;
           default:
           case "\n":
@@ -254,6 +311,12 @@ function generateTextUsable(message, inEmbed = false) {
     } else if (message.startsWith("```autohotkey ")) {
       return createCodeBlock(
         parseData(message.substring(14, message.length - 3), "autohotkey"),
+        inEmbed,
+        "code-block-wrapper"
+      );
+    } else if (message.startsWith("```bash ")) {
+      return createCodeBlock(
+        parseData(message.substring(8, message.length - 3), "bash"),
         inEmbed,
         "code-block-wrapper"
       );
