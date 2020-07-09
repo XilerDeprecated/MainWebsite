@@ -20,7 +20,7 @@ class DiscordMessage extends React.Component {
     return (
       <div className="discord-message">
         <div className="discord-message-wrapper">
-          <img onClick={performClick} src={this.props.sender.icon} />
+          <img onClick={performClick} src={this.props.sender.icon} alt="Sender icon"/>
           <div className="message">
             <div className="prev-data">
               <p className="bot">{this.props.sender.name}</p>
