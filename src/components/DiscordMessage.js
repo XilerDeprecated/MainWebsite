@@ -48,16 +48,15 @@ function getFollowupUntilChar(message, character, index) {
       delete message[i];
     }
   }
-  return [message, extraMSG.join("")]
+  return [message, extraMSG.join("")];
 }
 
 function parseData(message, type) {
-  let req;
+  let req, data;
   switch (type) {
     case "css":
       message = message.split(/([:.{}'";#()[\]\n])/);
-      // console.log(message);
-      let data = [];
+      data = [];
       message.forEach((item, index) => {
         switch (item) {
           case ":":
@@ -91,16 +90,16 @@ function parseData(message, type) {
           case "'":
           case '"':
             req = getFollowupUntilChar(message, item, index);
-            message = req[0]
+            message = req[0];
             data[index] = (
               <span key={index} className="light-aqua">
                 {req[1]}
               </span>
             );
             break;
-          case '[':
+          case "[":
             req = getFollowupUntilChar(message, "]", index);
-            message = req[0]
+            message = req[0];
             data[index] = (
               <span key={index} className="orange">
                 {req[1]}
@@ -116,10 +115,78 @@ function parseData(message, type) {
             break;
         }
       });
-      // console.log(data);
       return data;
-    // case "asciidoc":
-    //   break;
+    case "asciidoc":
+      message = message.split(/([-.=[\]*\n:])/);
+      data = [];
+      console.log(message);
+      message.forEach((item, index) => {
+        switch (item) {
+          case "[":
+            req = getFollowupUntilChar(message, "]", index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="orange">
+                {req[1]}
+              </span>
+            );
+            break;
+          case "-":
+          case "*":
+            if (message[index + 2] === "-" || message[index - 2] === "-") {
+              if (message[index - 2] === "\n") {
+                data[index - 3] = (
+                  <span key={index - 1} className="lightblue">
+                    {message[index - 3]}
+                  </span>
+                );
+              }
+              data[index] = (
+                <span key={index} className="lightblue">
+                  {message[index]}
+                </span>
+              );
+            } else {
+              data[index] = (
+                <span key={index} className="orange">
+                  {message[index]}
+                </span>
+              );
+            }
+            break;
+          case ":":
+            if (index >= 1) {
+              data[index - 1] = (
+                <span key={index} className="orange">
+                  {message[index - 1]}:
+                </span>
+              );
+              delete message[index];
+            }
+            break;
+          case "=":
+            if (message[index - 2] === "\n") {
+              data[index - 3] = (
+                <span key={index - 1} className="lightblue">
+                  {message[index - 3]}
+                </span>
+              );
+            }
+            req = getFollowupUntilChar(message, "\n", index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="lightblue">
+                {req[1]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
     default:
       break;
   }
@@ -130,6 +197,12 @@ function generateTextUsable(message, inEmbed = false) {
     if (message.startsWith("```css ")) {
       return createCodeBlock(
         parseData(message.substring(7, message.length - 3), "css"),
+        inEmbed,
+        "code-block-wrapper"
+      );
+    } else if (message.startsWith("```asciidoc ")) {
+      return createCodeBlock(
+        parseData(message.substring(12, message.length - 3), "asciidoc"),
         inEmbed,
         "code-block-wrapper"
       );

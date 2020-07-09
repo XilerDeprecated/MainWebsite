@@ -69,7 +69,7 @@ function EmbedGenerator() {
                   text: "Title",
                   url: "/",
                 },
-                description: "```css foo[test] .bar {\n   color: \"test\";\n}```",
+                description: "```asciidoc = Blue =\nblue above equals signs\n=====\nblue above dashes\n-----\n[Orange]\nOrange:: grey\n- hyphen\n* bullet point```",
               },
             }}
           />
