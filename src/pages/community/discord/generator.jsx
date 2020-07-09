@@ -77,15 +77,15 @@ function EmbedGenerator() {
                   </div>
                   <div className="embed-color">
                     <div className="embed-content">
-                      {/* <div className="author">
+                      <div className="author">
                         <img
-                          src="/assets/logoUsable-64x.png"
+                          src="https://avatars3.githubusercontent.com/u/38541241?s=460&u=60681c780526f228f457812b2fdd045724d32a11&v=4"
                           alt="Author icon"
                           className="author-avatar"
                         />
                         <a href="/">Author name (can point to URL)</a>
                       </div>
-                      <a href="/" className="title"></a> */}
+                      <a href="/" className="title"></a>
                       <div className="description">
                         <p>
                           Foo Bar

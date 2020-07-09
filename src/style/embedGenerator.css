@@ -179,3 +179,32 @@ main {
   margin: 0;
   padding: 0;
 }
+
+.author {
+  position: relative;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+.author img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border-radius: 50%;
+  cursor: default;
+  overflow: hidden;
+  position: relative;
+  margin: 0 24px 0 -19px;
+  /* position: absolute; */
+}
+
+.author a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.author a:hover {
+  text-decoration: underline;
+}
