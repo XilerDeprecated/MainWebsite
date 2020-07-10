@@ -119,7 +119,6 @@ function parseData(message, type) {
     case "asciidoc":
       message = message.split(/([-.=[\]*\n:])/);
       data = [];
-      console.log(message);
       message.forEach((item, index) => {
         switch (item) {
           case "[":
@@ -223,7 +222,7 @@ function parseData(message, type) {
             delete message[index + 4];
             break;
           case (item.match(/[1-9]/) || {}).input:
-            data[index] = <span className="light-aqua">{message[index]}</span>;
+            data[index] = <span key={index} className="light-aqua">{message[index]}</span>;
             break;
           default:
           case "\n":
@@ -295,14 +294,11 @@ function parseData(message, type) {
       message.forEach((item, index) => {
         switch (item) {
           case "=":
-            console.log(message);
             if (message[index + 1].trim().startsWith("->")) {
               data[index - 1] = (
                 <span key={index} className="lightblue">{message[index - 1]}</span>
               );
             }
-            console.log(index)
-            console.log(message);
             break;
           case "'":
           case '"':
@@ -315,8 +311,6 @@ function parseData(message, type) {
                   break;
                 }
               } else {
-                console.log(message[i]);
-                extraMSG.push(message[i]);
                 delete message[i];
               }
             }
