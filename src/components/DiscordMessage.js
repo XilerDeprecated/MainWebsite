@@ -18,9 +18,9 @@ function generateText(message) {
   return message.split("\n");
 }
 
-function createCodeBlock(message, inEmbed, ...form) {
+function createCodeBlock(message, inEmbed, index, ...form) {
   return (
-    <p className="code-block">
+    <p key={index} className="code-block">
       {inEmbed ? (
         <span className={[...form, "code-block-in-embed"].join(" ")}>
           {message}
@@ -222,7 +222,11 @@ function parseData(message, type) {
             delete message[index + 4];
             break;
           case (item.match(/[1-9]/) || {}).input:
-            data[index] = <span key={index} className="light-aqua">{message[index]}</span>;
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {message[index]}
+              </span>
+            );
             break;
           default:
           case "\n":
@@ -275,8 +279,11 @@ function parseData(message, type) {
           case "(":
             if (message[index + 2] === ")") {
               data[index - 1] = (
-                <span key={index} className="lightblue">
-                  {message[index - 1]}
+                <span>
+                  <span key={index} className="lightblue">
+                    {message[index - 1]}
+                  </span>
+                  {"("}
                 </span>
               );
             }
@@ -296,7 +303,9 @@ function parseData(message, type) {
           case "=":
             if (message[index + 1].trim().startsWith("->")) {
               data[index - 1] = (
-                <span key={index} className="lightblue">{message[index - 1]}</span>
+                <span key={index} className="lightblue">
+                  {message[index - 1]}
+                </span>
               );
             }
             break;
@@ -332,58 +341,94 @@ function parseData(message, type) {
   }
 }
 
-function generateTextUsable(message, inEmbed = false) {
+function generateTextUsable(message, inEmbed = false, index = 0) {
   if (message.startsWith("```") && message.endsWith("```")) {
     if (message.startsWith("```css ")) {
       return createCodeBlock(
         parseData(message.substring(7, message.length - 3), "css"),
         inEmbed,
+        index,
         "code-block-wrapper"
       );
     } else if (message.startsWith("```asciidoc ")) {
       return createCodeBlock(
         parseData(message.substring(12, message.length - 3), "asciidoc"),
         inEmbed,
+        index,
         "code-block-wrapper"
       );
     } else if (message.startsWith("```autohotkey ")) {
       return createCodeBlock(
         parseData(message.substring(14, message.length - 3), "autohotkey"),
         inEmbed,
+        index,
         "code-block-wrapper"
       );
     } else if (message.startsWith("```bash ")) {
       return createCodeBlock(
         parseData(message.substring(8, message.length - 3), "bash"),
         inEmbed,
+        index,
         "code-block-wrapper"
       );
     } else if (message.startsWith("```coffeescript ")) {
       return createCodeBlock(
         parseData(message.substring(16, message.length - 3), "coffeescript"),
         inEmbed,
+        index,
         "code-block-wrapper"
       );
     } else {
       return createCodeBlock(
         message.substring(3, message.length - 3),
         inEmbed,
-        "code-block-wrapper"
+        "code-block-wrapper",
+        index
       );
     }
   } else if (message.startsWith("`") && message.endsWith("`")) {
     return (
-      <p>
+      <p key={index}>
         <span className="code-line">
           {message.substring(1, message.length - 1)}
         </span>
       </p>
     );
   } else {
-    return generateText(message).map((item) => (
-      <p key={generateText(message).indexOf(item)}>{item}</p>
-    ));
+    return (
+      <div key={index}>
+        {generateText(message).map((item) => (
+          <p key={generateText(message).indexOf(item)}>{item}</p>
+        ))}
+      </div>
+    );
   }
+}
+
+function messageSplitter(message) {
+  const msg = message.split(/(?<=```)/);
+  let data = [];
+  msg.forEach((mess, index) => {
+    if (index + 1 === msg.length) {
+      data.push(mess);
+    } else if (mess.endsWith("```") && msg[index + 1].endsWith("```")) {
+      const prev = mess.substring(0, mess.length - 3);
+      data.push(prev);
+      data.push(`\`\`\`${msg[index + 1]}`);
+      delete msg[index + 1];
+    }
+  });
+  return data;
+}
+
+function generateDisplayableText(message, inEmbed = false) {
+  return (
+    <div>
+      {messageSplitter(message).map((msg, index) =>
+        generateTextUsable(msg, inEmbed, index)
+      )}
+    </div>
+  );
 }
 
 class DiscordMessage extends React.Component {
@@ -405,7 +450,7 @@ class DiscordMessage extends React.Component {
             </div>
             <div className="message-content">
               <div className="no-embed">
-                {generateTextUsable(this.props.message.noEmbed)}
+                {generateDisplayableText(this.props.message.noEmbed)}
               </div>
               <div className="embed-color">
                 <div className="embed-content">
@@ -426,7 +471,7 @@ class DiscordMessage extends React.Component {
                     {this.props.message.embed.title.text}
                   </a>
                   <div className="description">
-                    {generateTextUsable(
+                    {generateDisplayableText(
                       this.props.message.embed.description,
                       true
                     )}

@@ -56,7 +56,8 @@ function EmbedGenerator() {
               date: `Today at ${new Date().getHours()}:${new Date().getMinutes()}`,
             }}
             message={{
-              noEmbed: "```autohotkey A_Red\n%Yellow%\n^Orange::\n123```",
+              noEmbed:
+                'Some cool text here lul\n```autohotkey A_Red\n%Yellow%\n^Orange::\n123``` ```bash $Yellow\n"Cyan"\n#Gray\nthisIsBlue(){}\n#!Bash``` Ez embeds :)',
               embed: {
                 color: "#4f545c",
                 author: {
@@ -66,10 +67,12 @@ function EmbedGenerator() {
                   url: "https://github.com/Arthurdw",
                 },
                 title: {
-                  text: "Well, this is just an example embed that is temporary :)",
+                  text:
+                    "Well, this is just an example embed that is temporary :)",
                   url: "/",
                 },
-                description: "```asciidoc = Blue =\nblue above equals signs\n=====\nblue above dashes\n-----\n[Orange]\nOrange:: grey\n- hyphen\n* bullet point```",
+                description:
+                  "Foo bar\n ```asciidoc = Blue =\nblue above equals signs\n=====\nblue above dashes\n-----\n[Orange]\nOrange:: grey\n- hyphen\n* bullet point```",
               },
             }}
           />
