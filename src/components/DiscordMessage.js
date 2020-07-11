@@ -279,7 +279,7 @@ function parseData(message, type) {
           case "(":
             if (message[index + 2] === ")") {
               data[index - 1] = (
-                <span>
+                <span key={index}>
                   <span key={index} className="lightblue">
                     {message[index - 1]}
                   </span>
