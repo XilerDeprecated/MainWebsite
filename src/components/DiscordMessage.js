@@ -479,7 +479,7 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
             item
           ),
           inEmbed,
-          index * 100,
+          index,
           "code-block-wrapper"
         );
         return;
@@ -491,12 +491,12 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
         message.substring(4, message.length - 3),
         inEmbed,
         "code-block-wrapper",
-        index * 100
+        index
       )
     );
   } else if (message.startsWith("`") && message.endsWith("`")) {
     return (
-      <p key={index * 100}>
+      <p key={index}>
         <span className="code-line">
           {message.substring(1, message.length - 1)}
         </span>
@@ -504,7 +504,7 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
     );
   } else {
     return (
-      <div key={index * 100}>
+      <div key={index}>
         {generateText(message).map((item) => (
           <p key={generateText(message).indexOf(item)}>{item}</p>
         ))}
