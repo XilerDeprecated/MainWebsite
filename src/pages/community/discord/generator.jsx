@@ -8,8 +8,6 @@ import React from "react";
 import "../../../style/main.css";
 import "../../../style/embedGenerator.css";
 
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
 import DiscordMessage from "../../../components/DiscordMessage";
 
 /*
@@ -44,7 +42,6 @@ function EmbedGenerator() {
         rel="stylesheet"
       ></link>
       <title>Xiler | Discord Embed Generator</title>
-      <Header />
       <main>
         <div id="inputs"></div>
         <div id="preview">
@@ -79,7 +76,6 @@ function EmbedGenerator() {
         </div>
         <div id="output"></div>
       </main>
-      <Footer />
     </div>
   );
 }

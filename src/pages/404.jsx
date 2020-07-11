@@ -7,22 +7,17 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-
 import '../style/404.css'
 
 function PageNotFound() {
     return (
         <main id="content">
             <title>Xiler | 404</title>
-            <Header />
             <div id="PageNotFound">
                 <h1>Oops...<br />ERROR <span id="errorCode">404</span></h1>
                 <h2>Page Not Found</h2>
                 <Link to="/">Return to homepage</Link>
             </div>
-            <Footer />
         </main>
     );
 }
