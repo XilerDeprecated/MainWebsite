@@ -19,14 +19,29 @@ import PageNotFound from "./pages/404"
 // Discord Bot community pages:
 import EmbedGenerator from "./pages/community/discord/generator"
 
+// Layouts
+import Layout from "./layouts/Layout";
+
 class App extends React.Component {
     render() {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/404" component={PageNotFound} />
-                    <Route exact path="/community/dc/embed_generator" component={EmbedGenerator} />
+                    <Route exact path="/" render={() => (
+                        <Layout>
+                            <HomePage />
+                        </Layout>
+                    )} />
+                    <Route exact path="/404" render={() => (
+                        <Layout>
+                            <PageNotFound />
+                        </Layout>
+                    )} />
+                    <Route exact path="/community/dc/embed_generator" render={() => (
+                        <Layout>
+                            <EmbedGenerator />
+                        </Layout>
+                    )} />
                     <Route exact path="/license" component={() => { window.location.href = "https://legal.xiler.net/license"; return null;  }} />
                     <Route exact path="/tos" component={() => { window.location.href = "https://legal.xiler.net/ToS"; return null; }} />
                     <Redirect exact path="/community/discord" to="/community/dc/embed_generator" />
