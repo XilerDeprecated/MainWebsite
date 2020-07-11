@@ -11,7 +11,6 @@ import '../style/main.css'
 function HomePage() {
     return (
         <div id="HomePage">
-            <title>Xiler</title>
             <main></main>
         </div>
     );

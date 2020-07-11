@@ -12,7 +12,6 @@ import '../style/404.css'
 function PageNotFound() {
     return (
         <main id="content">
-            <title>Xiler | 404</title>
             <div id="PageNotFound">
                 <h1>Oops...<br />ERROR <span id="errorCode">404</span></h1>
                 <h2>Page Not Found</h2>
