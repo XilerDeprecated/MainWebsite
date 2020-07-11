@@ -54,70 +54,8 @@ function getFollowupUntilChar(message, character, index) {
 function parseData(message, type) {
   let req, data;
   switch (type) {
-    case "css":
-      message = message.split(/([:.{}'";#()[\]\n])/);
-      data = [];
-      message.forEach((item, index) => {
-        switch (item) {
-          case ":":
-            if (index >= 1) {
-              data[index - 1] = (
-                <span key={index} className="orange-brown">
-                  {message[index - 1]}
-                </span>
-              );
-              data[index] = item;
-            }
-            break;
-          case ".":
-          case "#":
-            data[index] = (
-              <span key={index} className="lightblue">
-                .{message[index + 1]}
-              </span>
-            );
-            message.splice(index + 1, 1);
-            break;
-          case "{":
-          case "}":
-          case "(":
-          case ")":
-          case ";":
-          case " ":
-          case "\n":
-            data[index] = item;
-            break;
-          case "'":
-          case '"':
-            req = getFollowupUntilChar(message, item, index);
-            message = req[0];
-            data[index] = (
-              <span key={index} className="light-aqua">
-                {req[1]}
-              </span>
-            );
-            break;
-          case "[":
-            req = getFollowupUntilChar(message, "]", index);
-            message = req[0];
-            data[index] = (
-              <span key={index} className="orange">
-                {req[1]}
-              </span>
-            );
-            break;
-          default:
-            data[index] = (
-              <span key={index} className="green">
-                {item}
-              </span>
-            );
-            break;
-        }
-      });
-      return data;
     case "asciidoc":
-      message = message.split(/([-.=[\]*\n:])/);
+      message = message.split(/([-=[\]*\n:])/);
       data = [];
       message.forEach((item, index) => {
         switch (item) {
@@ -336,6 +274,186 @@ function parseData(message, type) {
         }
       });
       return data;
+    case "cpp":
+      message = message.split(/([#'" ])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "#":
+            data[index] = <span className="orange">#{message[index + 1]}</span>;
+            delete message[index + 1];
+            break;
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {req[1]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    case "cs":
+      message = message.split(/(["'#\n[1-9\]])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "#":
+            data[index] = <span className="orange">#{message[index + 1]}</span>;
+            delete message[index + 1];
+            break;
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {req[1]}
+              </span>
+            );
+            break;
+          case (item.match(/[1-9]/) || {}).input:
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {message[index]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    case "css":
+      message = message.split(/([: {}'";#()[\]\n])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case ":":
+            if (index >= 1) {
+              data[index - 1] = (
+                <span key={index} className="orange-brown">
+                  {message[index - 1]}
+                </span>
+              );
+              data[index] = item;
+            }
+            break;
+          case ".":
+          case "#":
+            data[index] = (
+              <span key={index} className="lightblue">
+                .{message[index + 1]}
+              </span>
+            );
+            message.splice(index + 1, 1);
+            break;
+          case "{":
+          case "}":
+          case "(":
+          case ")":
+          case ";":
+          case " ":
+          case "\n":
+            data[index] = item;
+            break;
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {req[1]}
+              </span>
+            );
+            break;
+          case "[":
+            req = getFollowupUntilChar(message, "]", index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="orange">
+                {req[1]}
+              </span>
+            );
+            break;
+          default:
+            data[index] = (
+              <span key={index} className="green">
+                {item}
+              </span>
+            );
+            break;
+        }
+      });
+      return data;
+    case "diff":
+      message = message.split(/([-*!\n+])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "+":
+          case "!":
+            data[index] = (
+              <span key={index} className="green">
+                {item + message[index + 1]}
+              </span>
+            );
+            delete message[index + 1];
+            break;
+          case "-":
+          case "*":
+            if (
+              item + message[index + 2] + message[index + 4] ===
+              item + item + item
+            ) {
+              data[index] = (
+                <span key={index} className="gray">
+                  {item + item + item + message[index + 5]}
+                </span>
+              );
+              delete message[index + 2];
+              delete message[index + 4];
+              delete message[index + 5];
+              break;
+            } else if (item === "-") {
+              data[index] = (
+                <span key={index} className="red">
+                  {item + message[index + 1]}
+                </span>
+              );
+              delete message[index + 1];
+              break;
+            }
+            data[index] = item; // Fallthrough error prevention
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    // case "name":
+    //   message = message.split(/([splitters])/);
+    //   data = [];
+    //   message.forEach((item, index) => {
+    //     switch (item) {
+    //       default:
+    //       case "\n":
+    //         data[index] = item;
+    //         break;
+    //     }
+    //   });
+    //   return data;
     default:
       break;
   }
@@ -343,52 +461,42 @@ function parseData(message, type) {
 
 function generateTextUsable(message, inEmbed = false, index = 0) {
   if (message.startsWith("```") && message.endsWith("```")) {
-    if (message.startsWith("```css ")) {
-      return createCodeBlock(
-        parseData(message.substring(7, message.length - 3), "css"),
-        inEmbed,
-        index,
-        "code-block-wrapper"
-      );
-    } else if (message.startsWith("```asciidoc ")) {
-      return createCodeBlock(
-        parseData(message.substring(12, message.length - 3), "asciidoc"),
-        inEmbed,
-        index,
-        "code-block-wrapper"
-      );
-    } else if (message.startsWith("```autohotkey ")) {
-      return createCodeBlock(
-        parseData(message.substring(14, message.length - 3), "autohotkey"),
-        inEmbed,
-        index,
-        "code-block-wrapper"
-      );
-    } else if (message.startsWith("```bash ")) {
-      return createCodeBlock(
-        parseData(message.substring(8, message.length - 3), "bash"),
-        inEmbed,
-        index,
-        "code-block-wrapper"
-      );
-    } else if (message.startsWith("```coffeescript ")) {
-      return createCodeBlock(
-        parseData(message.substring(16, message.length - 3), "coffeescript"),
-        inEmbed,
-        index,
-        "code-block-wrapper"
-      );
-    } else {
-      return createCodeBlock(
-        message.substring(3, message.length - 3),
+    let returnValue;
+    [
+      "css",
+      "asciidoc",
+      "autohotkey",
+      "bash",
+      "coffeescript",
+      "cpp",
+      "cs",
+      "diff",
+    ].forEach((item) => {
+      if (message.startsWith(`\`\`\`${item} `)) {
+        returnValue = createCodeBlock(
+          parseData(
+            message.substring(item.length + 4, message.length - 3),
+            item
+          ),
+          inEmbed,
+          index * 100,
+          "code-block-wrapper"
+        );
+        return;
+      }
+    });
+    return (
+      returnValue ||
+      createCodeBlock(
+        message.substring(4, message.length - 3),
         inEmbed,
         "code-block-wrapper",
-        index
-      );
-    }
+        index * 100
+      )
+    );
   } else if (message.startsWith("`") && message.endsWith("`")) {
     return (
-      <p key={index}>
+      <p key={index * 100}>
         <span className="code-line">
           {message.substring(1, message.length - 1)}
         </span>
@@ -396,7 +504,7 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
     );
   } else {
     return (
-      <div key={index}>
+      <div key={index * 100}>
         {generateText(message).map((item) => (
           <p key={generateText(message).indexOf(item)}>{item}</p>
         ))}
@@ -423,11 +531,11 @@ function messageSplitter(message) {
 
 function generateDisplayableText(message, inEmbed = false) {
   return (
-    <div>
+    <>
       {messageSplitter(message).map((msg, index) =>
         generateTextUsable(msg, inEmbed, index)
       )}
-    </div>
+    </>
   );
 }
 
