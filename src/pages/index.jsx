@@ -10,9 +10,10 @@ import '../style/main.css'
 
 function HomePage() {
     return (
-        <div id="HomePage">
-            <main></main>
-        </div>
+        <main id="HomePage">
+            <h1>Welcome To Xiler</h1>
+            <p>This website is currently under development, to keep up with all of the latest updates we recommend to join our <a href="https://dc.xiler.net">discord server</a>!</p>
+        </main>
     );
 }
 
