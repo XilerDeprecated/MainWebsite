@@ -442,6 +442,315 @@ function parseData(message, type) {
         }
       });
       return data;
+    case "fix":
+      message = message.split(/([=\n])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "=":
+            data[index] = (
+              <React.Fragment key={index}>
+                <span style={{ color: "#b9bbbe" }}>=</span>
+                <span className="light-aqua">{message[index + 1]}</span>
+              </React.Fragment>
+            );
+            delete message[index + 1];
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return <span className="orange-brown">{data}</span>;
+    case "glsl":
+      message = message.split(/([#\n[1-9\]])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "#":
+            data[index] = (
+              <span key={index} className="orange">
+                #{message[index + 1]}
+              </span>
+            );
+            delete message[index + 1];
+            break;
+          case (item.match(/[1-9]/) || {}).input:
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {message[index]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    case "ini":
+      message = message.split(/([[\];\n])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case ";":
+            data[index] = (
+              <span key={index} className="gray">
+                ;{message[index + 1]}
+              </span>
+            );
+            delete message[index + 1];
+            break;
+          case "[":
+            req = getFollowupUntilChar(message, "]", index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="lightblue">
+                {req[1]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    case "json":
+      message = message.split(/(["':])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span
+                key={index}
+                className={
+                  message[index + 4] === ":" ? "orange-brown" : "light-aqua"
+                }
+              >
+                {req[1]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    // case "md":
+    //   message = message.split(/([splitters])/);
+    //   data = [];
+    //   message.forEach((item, index) => {
+    //     switch (item) {
+    //       default:
+    //       case "\n":
+    //         data[index] = item;
+    //         break;
+    //     }
+    //   });
+    //   return data;
+    case "ml":
+      message = message.split(/([ "'[1-9\]])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className={item === "'" ? "red" : "light-aqua"}>
+                {req[1]}
+              </span>
+            );
+            break;
+          case (item.match(/[1-9]/) || {}).input:
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {message[index]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            if (/[A-Z]/.test(item[0])) {
+              data[index] = <span className="orange-brown">{item}</span>;
+            } else {
+              data[index] = item;
+            }
+            break;
+        }
+      });
+      return data;
+    case "prolog":
+      message = message.split(/([ "'[1-9\]])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {req[1]}
+              </span>
+            );
+            break;
+          case (item.match(/[1-9]/) || {}).input:
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {message[index]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            if (/[A-Z]/.test(item[0])) {
+              data[index] = <span className="orange">{item}</span>;
+            } else {
+              data[index] = item;
+            }
+            break;
+        }
+      });
+      return data;
+    case "py":
+      message = message.split(/([\n@"'#[1-9\]])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "@":
+            if (
+              message[index - 1] === "\n" ||
+              message[index - 1] === "" ||
+              message[index - 1] === null
+            ) {
+              data[index] = (
+                <span key={index} className="orange">
+                  @{message[index + 1]}
+                </span>
+              );
+              delete message[index + 1];
+            } else {
+              data[index] = item;
+            }
+            break;
+          case (item.match(/[1-9]/) || {}).input:
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {message[index]}
+              </span>
+            );
+            break;
+          case "#":
+            data[index] = (
+              <span key={index} className="gray">
+                #{message[index + 1]}
+              </span>
+            );
+            delete message[index + 1];
+            break;
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {req[1]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    case "tex":
+      return <span className="dark-blue">{message}</span>;
+    case "xl":
+      message = message.split(/([\n[1-9\]"'])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case (item.match(/[1-9]/) || {}).input:
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {message[index]}
+              </span>
+            );
+            break;
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {req[1]}
+              </span>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
+    case "xml":
+      message = message.split(/([<> ])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "<":
+            req = getFollowupUntilChar(message, ">", index);
+            message = req[0];
+            let inner_msg = req[1]
+              .substring(1, req[1].length - 1)
+              .split(/([= ])/);
+            inner_msg[0] = (
+              <span key={index} className="lightblue">
+                {inner_msg[0]}
+              </span>
+            );
+            inner_msg.forEach((item, index) => {
+              if (item === "=") {
+                inner_msg[index] = (
+                  <React.Fragment key={index}>
+                    <span style={{ color: "#b9bbbe" }}>=</span>
+                    <span className="light-aqua">{inner_msg[index + 2] + inner_msg[index + 3]}</span>
+                  </React.Fragment>
+                );
+                delete inner_msg[index + 2];
+                delete inner_msg[index + 3];
+              }
+            });
+            data[index] = (
+              <React.Fragment key={index}>
+                {"<"}
+                <span className="orange-brown">{inner_msg}</span>
+
+                {">"}
+              </React.Fragment>
+            );
+            break;
+          default:
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
     // case "name":
     //   message = message.split(/([splitters])/);
     //   data = [];
@@ -471,6 +780,17 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
       "cpp",
       "cs",
       "diff",
+      "fix",
+      "glsl",
+      "ini",
+      "json",
+      // "md", // TODO: FIX MARKDOWN SUPPORT
+      "ml",
+      "prolog",
+      "py",
+      "tex",
+      "xl",
+      "xml",
     ].forEach((item) => {
       if (message.startsWith(`\`\`\`${item} `)) {
         returnValue = createCodeBlock(
@@ -488,7 +808,7 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
     return (
       returnValue ||
       createCodeBlock(
-        message.substring(4, message.length - 3),
+        message.substring(3, message.length - 3),
         inEmbed,
         "code-block-wrapper",
         index
