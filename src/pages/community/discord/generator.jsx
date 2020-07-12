@@ -41,7 +41,6 @@ function EmbedGenerator() {
         href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
         rel="stylesheet"
       ></link>
-      <title>Xiler | Discord Embed Generator</title>
       <main>
         <div id="inputs"></div>
         <div id="preview">

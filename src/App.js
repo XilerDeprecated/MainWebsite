@@ -28,17 +28,17 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path="/" render={() => (
-                        <Layout>
+                        <Layout title="Home">
                             <HomePage />
                         </Layout>
                     )} />
                     <Route exact path="/404" render={() => (
-                        <Layout>
+                        <Layout title="404">
                             <PageNotFound />
                         </Layout>
                     )} />
                     <Route exact path="/community/dc/embed_generator" render={() => (
-                        <Layout>
+                        <Layout title="Discord Embed Generator">
                             <EmbedGenerator />
                         </Layout>
                     )} />
