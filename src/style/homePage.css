@@ -37,7 +37,6 @@
 #intro .intro-wrapper h1 {
   max-width: 650px;
   width: 75vw;
-  /* min-width: 300px; */
 }
 
 #intro .intro-background {
@@ -61,6 +60,7 @@
 }
 
 .senders a {
+  user-select: none;
   color: var(--footer-background-color);
   background-color: var(--text-color);
   margin: 15px 5px 15px 5px;
@@ -81,6 +81,7 @@
 
 .intro-bli,
 .intro-tri {
+  user-select: none;
   position: absolute;
   height: 50vh;
   max-height: 500px;
@@ -95,4 +96,57 @@
 .intro-tri {
   right: 0;
   top: 0;
+}
+
+/* General sections: */
+.section {
+  position: relative;
+  width: 80vw;
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.section .background:hover {
+  background-color: yellow;
+}
+
+.section img {
+  height: 300px;
+  width: 300px;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.16));
+  transition: all 0.2s ease;
+  overflow: hidden;
+  user-select: none;
+  z-index: -100;
+}
+
+.section img:hover {
+  filter: drop-shadow(0 10px 4px rgba(0, 0, 0, 0.16));
+}
+
+.section .section-content {
+  margin: 10px 0 0 0;
+}
+
+.section .section-content a {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.section .section-content a:hover {
+  text-decoration: none;
+}
+
+@media (min-width: 750px) {
+  .section {
+    display: flex;
+    align-items: center;
+  }
+
+  .section .section-content {
+    margin: 0;
+    width: calc(80vw - 300px);
+    max-width: 500px;
+  }
 }

@@ -9,6 +9,19 @@ import { Link } from "react-router-dom";
 import "../style/main.css";
 import "../style/homePage.css";
 
+function Section(props) {
+  return (
+    <div id={props.id} className="section">
+      {props.left && <img src={props.icon} alt="" />}
+      <div className="section-content">
+        <a href={`#${props.id}`}>{props.title}</a>
+        <p>{props.content}</p>
+      </div>
+      {props.right && <img src={props.icon} alt="" />}
+    </div>
+  );
+}
+
 function HomePage() {
   return (
     <main id="HomePage">
@@ -36,6 +49,13 @@ function HomePage() {
           <img className="intro-tri" src="/assets/top-right-intro.png" alt="" />
         </div>
       </div>
+      <Section
+        id="about"
+        icon="/assets/about-question.png"
+        title="Who/what are we?"
+        content="TODO: FILL THIS IN"
+        left="true"
+      />
     </main>
   );
 }

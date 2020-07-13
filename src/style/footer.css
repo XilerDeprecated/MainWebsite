@@ -11,6 +11,7 @@
 footer {
   /* position: absolute; */
   position: static;
+  user-select: none;
   /* top: calc(100% - 250px); */
   /* bottom: 0; */
   height: 250px;
@@ -49,6 +50,8 @@ footer {
   width: 20px;
   height: 20px;
   float: left;
+  overflow: hidden;
+  user-select: none;
 }
 
 #footer-container {

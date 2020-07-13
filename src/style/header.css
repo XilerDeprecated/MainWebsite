@@ -132,6 +132,8 @@ header img {
   padding: 5px 0;
   position: absolute;
   left: 75px;
+  user-select: none;
+  overflow: hidden;
 }
 
 header, header img {
@@ -139,6 +141,7 @@ header, header img {
 }
 
 header ul {
+  user-select: none;
   position: absolute;
   right: 75px !important;
   float: right;
