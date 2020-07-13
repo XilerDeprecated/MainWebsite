@@ -16,7 +16,7 @@ function HomePage() {
         <div className="intro-wrapper">
           <h1>Your online service provider!</h1>
           <p>
-            Wether you want to create your own network or join an already
+            Whether you want to create your own network or join an already
             created one, Xiler is the place to be! We offer custom websites,
             Minecraft servers, CS:GO servers and custom Discord bots for your
             network, or join our already created servers!
@@ -28,8 +28,12 @@ function HomePage() {
           </div>
         </div>
         <div className="intro-background">
-          <img className="intro-bli" src="/assets/bottom-left-intro.png" alt=""/>
-          <img className="intro-tri" src="/assets/top-right-intro.png" alt=""/>
+          <img
+            className="intro-bli"
+            src="/assets/bottom-left-intro.png"
+            alt=""
+          />
+          <img className="intro-tri" src="/assets/top-right-intro.png" alt="" />
         </div>
       </div>
     </main>
