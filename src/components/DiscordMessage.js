@@ -824,25 +824,25 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
     );
   } else {
     return (
-      <div key={index}>
+      <React.Fragment key={index}>
         {generateText(message).map((item) => (
           <p key={generateText(message).indexOf(item)}>{item}</p>
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-function messageSplitter(message) {
-  const msg = message.split(/(?<=```)/);
+function messageSplitter(message, splitter) {
+  const msg = message.split(new RegExp(`(?<=${splitter})`, "g"));
   let data = [];
   msg.forEach((mess, index) => {
     if (index + 1 === msg.length) {
       data.push(mess);
-    } else if (mess.endsWith("```") && msg[index + 1].endsWith("```")) {
+    } else if (mess.endsWith(splitter) && msg[index + 1].endsWith(splitter)) {
       const prev = mess.substring(0, mess.length - 3);
       data.push(prev);
-      data.push(`\`\`\`${msg[index + 1]}`);
+      data.push(`${splitter + msg[index + 1]}`);
       delete msg[index + 1];
     }
   });
@@ -852,7 +852,7 @@ function messageSplitter(message) {
 function generateDisplayableText(message, inEmbed = false) {
   return (
     <>
-      {messageSplitter(message).map((msg, index) =>
+      {messageSplitter(message, "```").map((msg, index) =>
         generateTextUsable(msg, inEmbed, index)
       )}
     </>

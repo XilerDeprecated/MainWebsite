@@ -98,6 +98,18 @@
   top: 0;
 }
 
+@media (max-width: 400px) {
+  .intro-background {
+    height: 55vh !important;
+  }
+
+  .intro-wrapper {
+    position: absolute;
+    top: 0;
+    /* height: calc(100vh - 80px); */
+  }
+}
+
 /* General sections: */
 .section {
   position: relative;
@@ -117,7 +129,6 @@
   transition: all 0.2s ease;
   overflow: hidden;
   user-select: none;
-  z-index: -100;
 }
 
 .section img:hover {
