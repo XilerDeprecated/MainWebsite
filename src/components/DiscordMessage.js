@@ -863,7 +863,7 @@ class DiscordMessage extends React.Component {
   render() {
     root.style.setProperty("--embed-color", this.props.message.embed.color);
     return (
-      <div className="discord-message">
+      <div className="discord-message" itemScope>
         <div className="discord-message-wrapper">
           <img
             onClick={performClick}

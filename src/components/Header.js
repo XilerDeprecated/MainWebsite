@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header itemScope>
       <div id="headerKeeperMobile"></div>
       <button
         onClick={toggleHamburger}

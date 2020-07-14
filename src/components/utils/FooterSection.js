@@ -8,7 +8,7 @@ import React from "react";
 function FooterSection(props) {
     return (
         <div className="footer-section">
-          <h1>{props.title.toUpperCase()}</h1>
+          <h2>{props.title.toUpperCase()}</h2>
           <ul>
             {props.items.map(item => <li key={props.items.indexOf(item)}>{item}</li>)}
           </ul>

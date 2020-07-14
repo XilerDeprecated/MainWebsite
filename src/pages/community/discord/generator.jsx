@@ -41,7 +41,7 @@ function EmbedGenerator() {
         href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
         rel="stylesheet"
       ></link>
-      <main>
+      <main itemScope>
         <div id="inputs"></div>
         <div id="preview">
           <DiscordMessage

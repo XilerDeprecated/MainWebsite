@@ -9,23 +9,23 @@ import { Link } from "react-router-dom";
 import "../style/main.css";
 import "../style/homePage.css";
 
-function Section(props) {
-  return (
-    <div id={props.id} className="section">
-      {props.left && <img src={props.icon} alt="" />}
-      <div className="section-content">
-        <a href={`#${props.id}`}>{props.title}</a>
-        <p>{props.content}</p>
-      </div>
-      {props.right && <img src={props.icon} alt="" />}
-    </div>
-  );
-}
+// function Section(props) {
+//   return (
+//     <div id={props.id} className="section">
+//       {props.left && <img src={props.icon} alt="" />}
+//       <div className="section-content">
+//         <a href={`#${props.id}`}>{props.title}</a>
+//         <p>{props.content}</p>
+//       </div>
+//       {props.right && <img src={props.icon} alt="" />}
+//     </div>
+//   );
+// }
 
 function HomePage() {
   return (
-    <main id="HomePage">
-      <div id="intro">
+    <main id="HomePage" itemScope>
+      <div id="intro" itemScope>
         <div className="intro-wrapper">
           <h1>Your online service provider!</h1>
           <p>
@@ -41,21 +41,26 @@ function HomePage() {
           </div>
         </div>
         <div className="intro-background">
+          <img className="intro-bli" src="/assets/top-right-intro.png" alt="" />
           <img
-            className="intro-bli"
+            className="intro-tri"
             src="/assets/bottom-left-intro.png"
             alt=""
           />
-          <img className="intro-tri" src="/assets/top-right-intro.png" alt="" />
         </div>
       </div>
-      <Section
-        id="about"
-        icon="/assets/about-question.png"
-        title="Who/what are we?"
-        content="TODO: FILL THIS IN"
-        left="true"
-      />
+      <div id="about" className="section" itemScope itemType="https://schema.org/about">
+        <img src="/assets/about-question.png" alt="" itemProp="image"/>
+        <div className="section-content">
+          <a href="#about" itemProp="url">Who/what are we?</a>
+          <p itemProp="description">
+            Xiler is a small company created by Arthur with the intention to
+            make creating networks easily for everyone! We also want to offer
+            our amazing community a great experience when they are using our
+            community servers!
+          </p>
+        </div>
+      </div>
     </main>
   );
 }

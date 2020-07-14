@@ -21,7 +21,7 @@ class Footer extends React.Component {
   render() {
     this.updateTheme();
     return (
-      <footer>
+      <footer itemScope>
         <div id="footer-container">
           <FooterSection
             title="contact"

@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  height: 55vh;
   max-height: 500px;
 }
 
@@ -84,13 +84,15 @@
   user-select: none;
   position: absolute;
   height: 50vh;
-  max-height: 500px;
-  opacity: 0.05;
+  max-height: 450px;
+  transform: rotate(-90deg) scaleX(-1);
+  opacity: 0.15;
 }
 
 .intro-bli {
   left: 0;
   bottom: 0;
+  transform: rotate(180deg);
 }
 
 .intro-tri {
@@ -99,8 +101,9 @@
 }
 
 @media (max-width: 400px) {
-  .intro-background {
-    height: 55vh !important;
+  .intro-bli,
+  .intro-tri {
+    display: none;
   }
 
   .intro-wrapper {
