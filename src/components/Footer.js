@@ -91,11 +91,11 @@ class Footer extends React.Component {
       this.isDarkMode() ? "rgb(220, 220, 221)" : "rgb(70, 73, 76)"
     );
     root.style.setProperty(
-      "--header-background-color",
-      this.isDarkMode() ? "rgb(39, 41, 42)" : "rgb(197, 195, 198)"
+      "--background-color-darker",
+      this.isDarkMode() ? "rgb(49, 51, 53)" : "rgb(207, 205, 208)"
     );
     root.style.setProperty(
-      "--footer-background-color",
+      "--background-color-very-dark",
       this.isDarkMode() ? "rgb(39, 41, 42)" : "rgb(197, 195, 198)"
     );
     root.style.setProperty(

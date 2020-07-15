@@ -19,10 +19,21 @@
   justify-content: center;
   height: 55vh;
   max-height: 500px;
+  color: rgb(220, 220, 221);
 }
 
 #intro .intro-wrapper {
   margin: 0;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #intro .intro-wrapper h1 {
@@ -61,8 +72,8 @@
 
 .senders a {
   user-select: none;
-  color: var(--footer-background-color);
-  background-color: var(--text-color);
+  color: rgb(70, 73, 76);
+  background-color: rgb(220, 220, 221);
   margin: 15px 5px 15px 5px;
   padding: 10px;
   border-radius: 5px;
@@ -90,14 +101,36 @@
 }
 
 .intro-bli {
-  left: 0;
   bottom: 0;
   transform: rotate(180deg);
+  animation: slideInLeft 1s;
+  left: 0;
 }
 
 .intro-tri {
-  right: 0;
   top: 0;
+  animation: slideInRight 1s;
+  right: 0;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    left: -450px;
+  } 
+  to {
+    opacity: 0.15;
+    left: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    right: -450px;
+  } 
+  to {
+    right: 0;
+  }
 }
 
 @media (max-width: 400px) {
@@ -132,6 +165,16 @@
   transition: all 0.2s ease;
   overflow: hidden;
   user-select: none;
+  animation: slideSectionLeft 1s;
+}
+
+@keyframes slideSectionLeft {
+  from {
+    margin-left: -50vw;
+  }
+  to {
+    margin-left: 0;
+  }
 }
 
 .section img:hover {

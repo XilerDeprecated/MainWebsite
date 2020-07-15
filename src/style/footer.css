@@ -4,10 +4,6 @@
  By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
 */
 
-:root {
-  --footer-background-color: rgb(39, 41, 42);
-}
-
 footer {
   /* position: absolute; */
   position: static;
@@ -15,7 +11,7 @@ footer {
   /* top: calc(100% - 250px); */
   /* bottom: 0; */
   height: 250px;
-  background-color: var(--footer-background-color);
+  background-color: var(--background-color-very-dark);
   color: var(--text-color);
 }
 
@@ -99,7 +95,7 @@ footer {
   padding: 5px;
   border-radius: 5px;
   transition: background-color 0.05s ease-in-out;
-  color: var(--footer-background-color);
+  color: var(--background-color-very-dark);
   background-color: var(--text-color);
 }
 

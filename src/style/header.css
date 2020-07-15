@@ -4,10 +4,6 @@
  By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
 */
 
-:root {
-  --header-background-color: rgb(39, 41, 42);
-}
-
 .hamburger {
   padding: 15.5px;
   margin: 10px;
@@ -122,12 +118,12 @@
 header {
   top: 0 !important;
   position: fixed;
-  background-color: var(--header-background-color);
+  background-color: var(--background-color-very-dark);
   height: 80px;
   width: 100vw;
 }
 
-header img {
+header a img {
   height: 70px;
   padding: 5px 0;
   position: absolute;
@@ -136,7 +132,7 @@ header img {
   overflow: hidden;
 }
 
-header, header img {
+header, header a img {
   z-index: 10000 !important;
 }
 
@@ -186,7 +182,7 @@ header ul li a:hover {
 .hoverSection {
   position: absolute;
   top: 80px;
-  background-color: var(--header-background-color);
+  background-color: var(--background-color-very-dark);
   display: none;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -223,12 +219,12 @@ header ul li a:hover {
 
   #headerKeeperMobile {
     position: absolute;
-    background-color: var(--header-background-color);
+    background-color: var(--background-color-very-dark);
     height: 80px;
   }
 
   header,
-  header img,
+  header a img,
   header button,
   #headerKeeperMobile {
     top: 0;
@@ -243,7 +239,7 @@ header ul li a:hover {
     width: 100vw !important;
     left: 0;
     height: fit-content;
-    border-bottom: 3px solid var(--header-background-color);
+    border-bottom: 3px solid var(--background-color-very-dark);
     top: -323px;
     transition: top 0.5s ease-in-out;
     z-index: 1 !important;
@@ -270,7 +266,7 @@ header ul li a:hover {
     background-color: var(--background-color);
   }
 
-  header img {
+  header a img {
     left: calc(50vw - 70px / 2);
   }
 

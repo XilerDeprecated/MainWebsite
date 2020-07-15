@@ -54,8 +54,8 @@ function HomePage() {
         <div className="section-content">
           <a href="#about" itemProp="url">Who/what are we?</a>
           <p itemProp="description">
-            Xiler is a small company created by Arthur with the intention to
-            make creating networks easily for everyone! We also want to offer
+            Xiler is a small company created by Arthur, with the intention to
+            make it easy for everyone to create networks! We also want to offer
             our amazing community a great experience when they are using our
             community servers!
           </p>

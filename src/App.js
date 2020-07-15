@@ -29,7 +29,7 @@ const EmbedGenerator = lazy(() =>
 function loadingComponent() {
   return (
     <React.Fragment>
-      <div class="loader">
+      <div className="loader">
         <div></div>
         <div></div>
         <div></div>

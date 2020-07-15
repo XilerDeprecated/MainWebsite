@@ -28,7 +28,9 @@ const Header = () => {
           <span className="hamburger-inner"></span>
         </span>
       </button>
-      <img id="icon" src="/assets/logo-128x.png" alt="Xiler Icon" />
+      <a href="/">
+        <img id="icon" src="/assets/logo-128x.png" alt="Xiler Icon" />
+      </a>
       <ul id="popout" className={popout ? "active" : ""}>
         <li>
           <Link to="/">Home</Link>
