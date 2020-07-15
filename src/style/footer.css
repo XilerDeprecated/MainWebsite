@@ -78,6 +78,10 @@ footer {
   padding: 0;
 }
 
+.footer-section ul li {
+  margin: 1px 0;
+}
+
 .footer-section ul li a {
   color: var(--text-color);
   text-decoration: none;
