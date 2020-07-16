@@ -175,6 +175,7 @@
 
 #about img {
   animation: slideSectionLeft 1s;
+  transform: rotate(-15deg); 
 }
 
 @keyframes slideSectionLeft {
@@ -248,4 +249,8 @@
   margin: 20px auto;
   max-width: 650px;
   width: 75vw;
+}
+
+#offer img {
+  transform: rotate(-30deg); 
 }
