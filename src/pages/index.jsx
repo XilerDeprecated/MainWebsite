@@ -49,10 +49,19 @@ function HomePage() {
           />
         </div>
       </div>
-      <div id="about" className="section" itemScope itemType="https://schema.org/about">
-        <img src="/assets/about-question.png" alt="" itemProp="image"/>
+      <div
+        id="about"
+        className="section"
+        itemScope
+        itemType="https://schema.org/about"
+      >
+        <img src="/assets/about-question.png" alt="" itemProp="image" />
         <div className="section-content">
-          <a href="#about" itemProp="url">Who/what are we?</a>
+          <h2>
+            <a href="#about" className="sec-url" itemProp="url">
+              Who/what are we?
+            </a>
+          </h2>
           <p itemProp="description">
             Xiler is a small company created by Arthur, with the intention to
             make it easy for everyone to create networks! We also want to offer
@@ -60,6 +69,42 @@ function HomePage() {
             community servers!
           </p>
         </div>
+      </div>
+      <div id="why-us" className="extra-sec" itemScope>
+        <div className="extra-sec-wrapper">
+          <h2>
+            <a href="#why-us" className="sec-url">
+              Why choose for us?
+            </a>
+          </h2>
+          <p>
+            We try to make our brand as easy to use for our customers, therefore
+            we make everything easy to setup and use! Our services are
+            relativity cheap! For any non custom props you should receive your
+            item within 30 seconds!
+          </p>
+        </div>
+      </div>
+      <div
+        id="offer"
+        className="section"
+        itemScope
+        itemType="https://schema.org/about"
+      >
+        <div className="section-content">
+          <h2>
+            <a href="#offer" className="sec-url" itemProp="url">
+              What do we offer?
+            </a>
+          </h2>
+          <p itemProp="description">
+            We offer an amazing and great experience throughout all our
+            services! Amazing insights (statistics), live feed, insane
+            customizability, cross network connection! And last but not least
+            our amazing community services!
+          </p>
+        </div>
+        <img src="/assets/Smile.png" alt="" itemProp="image" />
       </div>
     </main>
   );

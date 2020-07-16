@@ -22,6 +22,15 @@
   color: rgb(220, 220, 221);
 }
 
+#intro .intro-background,
+.extra-sec {
+  background-image: linear-gradient(
+    to bottom left,
+    var(--accent-color-light),
+    var(--accent-color)
+  );
+}
+
 #intro .intro-wrapper {
   margin: 0;
   animation: fadeIn 0.5s;
@@ -52,11 +61,6 @@
 
 #intro .intro-background {
   background-color: rgb(20, 20, 21);
-  background-image: linear-gradient(
-    to bottom left,
-    var(--accent-color-very-light),
-    var(--accent-color)
-  );
   position: absolute;
   width: 100%;
   height: 100%;
@@ -117,7 +121,7 @@
   from {
     opacity: 0;
     left: -450px;
-  } 
+  }
   to {
     opacity: 0.15;
     left: 0;
@@ -127,7 +131,7 @@
 @keyframes slideInRight {
   from {
     right: -450px;
-  } 
+  }
   to {
     right: 0;
   }
@@ -149,7 +153,8 @@
   position: relative;
   width: 80vw;
   max-width: 800px;
-  margin: 50px auto;
+  padding: 80px 0;
+  margin: 0 auto;
 }
 
 .section .background:hover {
@@ -157,12 +162,18 @@
 }
 
 .section img {
-  height: 300px;
-  width: 300px;
+  height: 100%;
+  width: 100%;
+  max-height: 300px;
+  max-width: 300px;
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.16));
   transition: all 0.2s ease;
   overflow: hidden;
   user-select: none;
+  object-fit: cover;
+}
+
+#about img {
   animation: slideSectionLeft 1s;
 }
 
@@ -204,4 +215,37 @@
     width: calc(80vw - 300px);
     max-width: 500px;
   }
+  
+  #about img {
+    margin: 0 25px 0 0;
+    animation: slideSectionLeft 1s;
+  }
+
+  #offer img {
+    margin: 0 0 0 25px;
+  }
+}
+
+.sec-url {
+  text-decoration: none;
+}
+
+.extra-sec {
+  background-color: var(--accent-color);
+  height: 45vh;
+  max-height: 400px;
+  color: rgb(220, 220, 221);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.extra-sec h2 a {
+  color: rgb(220, 220, 221);
+}
+
+.extra-sec p {
+  margin: 20px auto;
+  max-width: 650px;
+  width: 75vw;
 }

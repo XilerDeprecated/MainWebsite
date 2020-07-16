@@ -132,7 +132,8 @@ header a img {
   overflow: hidden;
 }
 
-header, header a img {
+header,
+header a img {
   z-index: 10000 !important;
 }
 
