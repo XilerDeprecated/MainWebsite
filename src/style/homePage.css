@@ -134,15 +134,13 @@
 }
 
 @media (max-width: 400px) {
+  #intro {
+    height: 100vh;
+  }
+
   .intro-bli,
   .intro-tri {
     display: none;
-  }
-
-  .intro-wrapper {
-    position: absolute;
-    top: 0;
-    /* height: calc(100vh - 80px); */
   }
 }
 
