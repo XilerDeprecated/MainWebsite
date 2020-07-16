@@ -292,6 +292,17 @@ a:hover {
   }
 }
 
+@media (max-width: 400px) {
+  main {
+    width: calc(100vw - 20px);
+    margin-left: 10px;
+  }
+
+  .embed-content, .code-block-wrapper {
+    width: 130%;
+  }
+}
+
 .code-block-wrapper {
   display: block;
   overflow-x: auto;
