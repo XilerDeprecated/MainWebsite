@@ -53,7 +53,7 @@ function EmbedGenerator() {
             }}
             message={{
               noEmbed:
-                'Some cool text here lul\n```autohotkey A_Red\n%Yellow%\n^Orange::\n123``` ```bash $Yellow\n"Cyan"\n#Gray\nthisIsBlue(){}\n#!Bash``` Ez embeds :)',
+                'Some cool text here lul\n```md [cyan](orange)\n* bullet point\n1. numbered list\n/* orange *\n> grey\n< yellow >\n< yellow\nmultiline >\n<blue>\n<blue yellow="cyan">\n#blue\na blue above dash\n--------\nblue above equal\n=====\n123``` ```bash $Yellow\n"Cyan"\n#Gray\nthisIsBlue(){}\n#!Bash``` Ez embeds :)',
               embed: {
                 color: "#4f545c",
                 author: {

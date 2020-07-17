@@ -546,18 +546,163 @@ function parseData(message, type) {
         }
       });
       return data;
-    // case "md":
-    //   message = message.split(/([splitters])/);
-    //   data = [];
-    //   message.forEach((item, index) => {
-    //     switch (item) {
-    //       default:
-    //       case "\n":
-    //         data[index] = item;
-    //         break;
-    //     }
-    //   });
-    //   return data;
+    case "md":
+      message = message.split(/([ -<>=.#"'[1-9[\]\]/*\n])/);
+      data = [];
+      message.forEach((item, index) => {
+        switch (item) {
+          case "<":
+            req = getFollowupUntilChar(message, ">", index);
+            message = req[0];
+            let inner_msg = req[1]
+              .substring(1, req[1].length - 1)
+              .split(/([= ])/);
+            inner_msg[0] = (
+              <span key={index} className="lightblue">
+                {inner_msg[0]}
+              </span>
+            );
+            inner_msg.forEach((item, index) => {
+              if (item === "=") {
+                inner_msg[index] = (
+                  <React.Fragment key={index}>
+                    <span style={{ color: "#b9bbbe" }}>=</span>
+                    <span className="light-aqua">{inner_msg[index + 1]}</span>
+                  </React.Fragment>
+                );
+                delete inner_msg[index + 1];
+              }
+            });
+            data[index] = (
+              <React.Fragment key={index}>
+                {"<"}
+                <span className="orange-brown">{inner_msg}</span>
+
+                {">"}
+              </React.Fragment>
+            );
+            break;
+          case "*":
+            data[index] = (
+              <span key={index} className="orange">
+                *
+              </span>
+            );
+            break;
+          case "'":
+          case '"':
+            req = getFollowupUntilChar(message, item, index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="light-aqua">
+                {req[1]}
+              </span>
+            );
+            break;
+          case "/":
+            if (message[index + 2] === "*") {
+              message[index] = "/*";
+              delete message[index + 2];
+              req = getFollowupUntilChar(message, "*", index);
+              message = req[0];
+              data[index] = (
+                <span key={index} className="orange">
+                  {req[1]}
+                </span>
+              );
+            }
+            break;
+          case (item.match(/[1-9]/) || {}).input:
+            if (message[index + 2] === ".") {
+              data[index] = (
+                <span key={index} className="orange">
+                  {message[index]}.
+                </span>
+              );
+              delete message[index + 2];
+            } else {
+              data[index] = message[index];
+            }
+            break;
+          case ">":
+            if (message[index + 2] !== "\n") {
+              req = getFollowupUntilChar(message, "\n", index);
+              message = req[0];
+              data[index] = (
+                <span key={index} className="gray">
+                  {req[1]}
+                </span>
+              );
+            } else {
+              data[index] = message[index];
+            }
+            break;
+          case "-":
+          case "=":
+            if (message[index - 2] === "\n") {
+              let msg = "",
+                indexes = [];
+              for (let i = index - 3; i > 0; i--) {
+                if (typeof message[i] !== "undefined") {
+                  if (message[i] !== "\n") {
+                    msg = message[i] + msg;
+                  }
+                }
+                if (message[i] === "\n") {
+                  break;
+                }
+                indexes.push(i);
+              }
+              indexes.forEach((idx) => {
+                if (typeof message[idx] !== "undefined") {
+                  delete message[idx];
+                  delete data[idx];
+                }
+              });
+              data[index - 3] = (
+                <span key={index - 3} className="lightblue">
+                  {msg}
+                </span>
+              );
+            }
+            req = getFollowupUntilChar(message, "\n", index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="lightblue">
+                {req[1]}
+              </span>
+            );
+            break;
+          case "#":
+            req = getFollowupUntilChar(message, "\n", index);
+            message = req[0];
+            data[index] = (
+              <span key={index} className="lightblue">
+                {req[1]}
+              </span>
+            );
+            break;
+          case "[":
+          case "(":
+            req = getFollowupUntilChar(message, item === "[" ? "]" : ")", index);
+            message = req[0];
+            data[index] = (
+              <React.Fragment key={index}>
+                {"["}
+                <span className={item === "[" ? "light-aqua" : "orange"}>
+                  {req[1].substring(1, req[1].length - 1)}
+                </span>
+                {"]"}
+              </React.Fragment>
+            );
+            break;
+          default:
+          case "\n":
+            data[index] = item;
+            break;
+        }
+      });
+      return data;
     case "ml":
       message = message.split(/([ "'[1-9\]])/);
       data = [];
@@ -729,11 +874,10 @@ function parseData(message, type) {
                 inner_msg[index] = (
                   <React.Fragment key={index}>
                     <span style={{ color: "#b9bbbe" }}>=</span>
-                    <span className="light-aqua">{inner_msg[index + 2] + inner_msg[index + 3]}</span>
+                    <span className="light-aqua">{inner_msg[index + 1]}</span>
                   </React.Fragment>
                 );
-                delete inner_msg[index + 2];
-                delete inner_msg[index + 3];
+                delete inner_msg[index + 1];
               }
             });
             data[index] = (
@@ -784,7 +928,7 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
       "glsl",
       "ini",
       "json",
-      // "md", // TODO: FIX MARKDOWN SUPPORT
+      "md", // TODO: FIX MARKDOWN SUPPORT
       "ml",
       "prolog",
       "py",
