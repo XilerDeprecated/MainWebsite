@@ -174,7 +174,6 @@
 }
 
 #about img {
-  animation: slideSectionLeft 1s;
   transform: rotate(-15deg); 
 }
 
@@ -205,6 +204,12 @@
   text-decoration: none;
 }
 
+@media (max-width: 750px) {
+  #about img {
+    animation: slideSectionLeft 1s;
+  }
+}
+
 @media (min-width: 750px) {
   .section {
     display: flex;
@@ -219,7 +224,6 @@
   
   #about img {
     margin: 0 25px 0 0;
-    animation: slideSectionLeft 1s;
   }
 
   #offer img {
@@ -252,5 +256,6 @@
 }
 
 #offer img {
+  width: 90%;
   transform: rotate(-30deg); 
 }
