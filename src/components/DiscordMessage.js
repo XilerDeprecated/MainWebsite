@@ -1047,7 +1047,7 @@ class DiscordMessage extends React.Component {
                             )
                             ? this.props.message.embed.author.url
                             : `http://${this.props.message.embed.author.url}`
-                          : "/"
+                          : ""
                       }
                       target="_blank"
                       rel="noopener noreferrer"
@@ -1061,7 +1061,7 @@ class DiscordMessage extends React.Component {
                         ? this.props.message.embed.title.url.startsWith("http")
                           ? this.props.message.embed.title.url
                           : `http://${this.props.message.embed.title.url}`
-                        : "/"
+                        : ""
                     }
                     target="_blank"
                     rel="noopener noreferrer"
