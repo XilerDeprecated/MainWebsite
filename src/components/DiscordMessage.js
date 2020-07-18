@@ -1031,7 +1031,7 @@ class DiscordMessage extends React.Component {
               {this.props.message.noEmbed && <div className="no-embed">
                 {generateDisplayableText(this.props.message.noEmbed)}
               </div>}
-              <div className="embed-color">
+              {this.props.message.embed.description && <div className="embed-color">
                 <div className="embed-content">
                   {this.props.message.embed.author.name && <div className="author">
                     {this.props.message.embed.author.icon && <img
@@ -1076,7 +1076,7 @@ class DiscordMessage extends React.Component {
                     )}
                   </div>
                 </div>
-              </div>
+              </div>}
             </div>
           </div>
         </div>
