@@ -684,7 +684,11 @@ function parseData(message, type) {
             break;
           case "[":
           case "(":
-            req = getFollowupUntilChar(message, item === "[" ? "]" : ")", index);
+            req = getFollowupUntilChar(
+              message,
+              item === "[" ? "]" : ")",
+              index
+            );
             message = req[0];
             data[index] = (
               <React.Fragment key={index}>
@@ -936,7 +940,10 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
       "xl",
       "xml",
     ].forEach((item) => {
-      if (message.startsWith(`\`\`\`${item} `)) {
+      if (
+        message.startsWith(`\`\`\`${item} `) ||
+        message.startsWith(`\`\`\`${item}\n`)
+      ) {
         returnValue = createCodeBlock(
           parseData(
             message.substring(item.length + 4, message.length - 3),
@@ -1021,23 +1028,43 @@ class DiscordMessage extends React.Component {
               <p className="date">{this.props.sender.date}</p>
             </div>
             <div className="message-content">
-              <div className="no-embed">
+              {this.props.message.noEmbed && <div className="no-embed">
                 {generateDisplayableText(this.props.message.noEmbed)}
-              </div>
+              </div>}
               <div className="embed-color">
                 <div className="embed-content">
-                  <div className="author">
-                    <img
+                  {this.props.message.embed.author.name && <div className="author">
+                    {this.props.message.embed.author.icon && <img
                       src={this.props.message.embed.author.icon}
-                      alt="Author icon"
+                      alt=""
                       className="author-avatar"
-                    />
-                    <a href={this.props.message.embed.author.url}>
+                    />}
+                    <a
+                      href={
+                        this.props.message.embed.author.url
+                          ? this.props.message.embed.author.url.startsWith(
+                              "http"
+                            )
+                            ? this.props.message.embed.author.url
+                            : `http://${this.props.message.embed.author.url}`
+                          : "/"
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {this.props.message.embed.author.name}
                     </a>
-                  </div>
+                  </div>}
                   <a
-                    href={this.props.message.embed.title.url}
+                    href={
+                      this.props.message.embed.title.url
+                        ? this.props.message.embed.title.url.startsWith("http")
+                          ? this.props.message.embed.title.url
+                          : `http://${this.props.message.embed.title.url}`
+                        : "/"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="title"
                   >
                     {this.props.message.embed.title.text}
