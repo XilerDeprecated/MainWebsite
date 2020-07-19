@@ -8,6 +8,13 @@
   --embed-color: #4f545c;
 }
 
+#EmbedGenerator {
+  max-width: 1000px;
+  margin: 100px auto 50px auto;
+}
+
+/* Preview */
+
 h3 {
   color: var(--text-color);
   margin: 2px 0;
@@ -26,6 +33,7 @@ a:hover {
   text-decoration: underline;
 }
 
+
 #preview,
 #inputs {
   position: relative;
@@ -35,13 +43,16 @@ a:hover {
   background-color: #32353b;
 }
 
+.message {
+  width: calc(100% - 72px);
+}
+
 .discord-message-wrapper .message {
   /* position: absolute; */
   /* left: 72px;
   top: 4px; */
   margin: 4px 0 0 72px;
   /* height: 150px; */
-  width: calc(90vw - 172px);
 }
 
 .discord-message-wrapper img {
@@ -67,6 +78,7 @@ a:hover {
   position: relative;
   color: #dcddde;
   overflow: auto;
+  border-radius: 2px;
 }
 
 .discord-message,
@@ -117,7 +129,7 @@ a:hover {
   /* top: 25px; */
   /* height: fit-content; */
   padding-bottom: 10px;
-  width: calc(90vw - 200px);
+  width: 95%;
 }
 
 .bot-tag {
@@ -149,7 +161,7 @@ a:hover {
 .description {
   /* min-height: 38px; */
   min-width: 34px;
-  width: calc(90vw - 200px);
+  width: calc(100% - 72px);
   max-width: 516px;
   height: fit-content;
   word-break: break-all;
@@ -338,11 +350,14 @@ a:hover {
   margin: 10px 0;
 }
 
-#inputs h4, #inputs h5 {
+#inputs h4,
+#inputs h5 {
   margin: 2px 0;
 }
 
-#inputs textarea, #inputs input {
+#inputs textarea,
+#inputs input {
+  display: inline-block;
   width: 80%;
   min-width: 50%;
   min-height: 20px;
@@ -368,7 +383,10 @@ a:hover {
   width: 80%;
 }
 
-#inputs input, #inputs textarea, .title input, .color-picker {
+#inputs input,
+#inputs textarea,
+.title input,
+.color-picker {
   margin: 2px 0;
 }
 

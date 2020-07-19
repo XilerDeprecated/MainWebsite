@@ -916,6 +916,23 @@ function parseData(message, type) {
   }
 }
 
+function setupSplitter(splitter, className, message) {
+  let data = [];
+  console.log(message)
+  message.forEach((item, index) => {
+    if (typeof item !== "undefined" && item !== "" && item !== null) {
+      if (item === splitter && message[index + 2] === splitter) {
+        data.push(<span className={className}>{message[index + 1]}</span>);
+        delete message[index + 1];
+        delete message[index + 2];
+      } else {
+        data.push(item);
+      }
+    }
+  });
+  return data;
+}
+
 function generateTextUsable(message, inEmbed = false, index = 0) {
   if (message.startsWith("```") && message.endsWith("```")) {
     let returnValue;
@@ -965,22 +982,21 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
         index
       )
     );
-  } else if (message.startsWith("`") && message.endsWith("`")) {
-    return (
-      <p key={index}>
-        <span className="code-line">
-          {message.substring(1, message.length - 1)}
-        </span>
-      </p>
-    );
   } else {
-    return (
-      <React.Fragment key={index}>
-        {generateText(message).map((item) => (
-          <p key={generateText(message).indexOf(item)}>{item}</p>
-        ))}
-      </React.Fragment>
-    );
+    let data = setupSplitter("`", "code-line", message.split(/([`])/))
+    if (data) {
+      return data;
+    } else {
+      // data = setupSplitter("**", "bold", message.split(/([])/)) // todo: fix formatting
+      console.log(data)
+      return (
+        <React.Fragment key={index}>
+          {generateText(message).map((item) => {
+            return <p key={generateText(message).indexOf(item)}>{item}</p>;
+          })}
+        </React.Fragment>
+      );
+    }
   }
 }
 
@@ -1028,55 +1044,65 @@ class DiscordMessage extends React.Component {
               <p className="date">{this.props.sender.date}</p>
             </div>
             <div className="message-content">
-              {this.props.message.noEmbed && <div className="no-embed">
-                {generateDisplayableText(this.props.message.noEmbed)}
-              </div>}
-              {this.props.message.embed.description && <div className="embed-color">
-                <div className="embed-content">
-                  {this.props.message.embed.author.name && <div className="author">
-                    {this.props.message.embed.author.icon && <img
-                      src={this.props.message.embed.author.icon}
-                      alt=""
-                      className="author-avatar"
-                    />}
+              {this.props.message.noEmbed && (
+                <div className="no-embed">
+                  {generateDisplayableText(this.props.message.noEmbed)}
+                </div>
+              )}
+              {this.props.message.embed.description && (
+                <div className="embed-color">
+                  <div className="embed-content">
+                    {this.props.message.embed.author.name && (
+                      <div className="author">
+                        {this.props.message.embed.author.icon && (
+                          <img
+                            src={this.props.message.embed.author.icon}
+                            alt=""
+                            className="author-avatar"
+                          />
+                        )}
+                        <a
+                          href={
+                            this.props.message.embed.author.url
+                              ? this.props.message.embed.author.url.startsWith(
+                                  "http"
+                                )
+                                ? this.props.message.embed.author.url
+                                : `http://${this.props.message.embed.author.url}`
+                              : ""
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {this.props.message.embed.author.name}
+                        </a>
+                      </div>
+                    )}
                     <a
                       href={
-                        this.props.message.embed.author.url
-                          ? this.props.message.embed.author.url.startsWith(
+                        this.props.message.embed.title.url
+                          ? this.props.message.embed.title.url.startsWith(
                               "http"
                             )
-                            ? this.props.message.embed.author.url
-                            : `http://${this.props.message.embed.author.url}`
+                            ? this.props.message.embed.title.url
+                            : `http://${this.props.message.embed.title.url}`
                           : ""
                       }
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="title"
                     >
-                      {this.props.message.embed.author.name}
+                      {this.props.message.embed.title.text}
                     </a>
-                  </div>}
-                  <a
-                    href={
-                      this.props.message.embed.title.url
-                        ? this.props.message.embed.title.url.startsWith("http")
-                          ? this.props.message.embed.title.url
-                          : `http://${this.props.message.embed.title.url}`
-                        : ""
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="title"
-                  >
-                    {this.props.message.embed.title.text}
-                  </a>
-                  <div className="description">
-                    {generateDisplayableText(
-                      this.props.message.embed.description,
-                      true
-                    )}
+                    <div className="description">
+                      {generateDisplayableText(
+                        this.props.message.embed.description,
+                        true
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>}
+              )}
             </div>
           </div>
         </div>
