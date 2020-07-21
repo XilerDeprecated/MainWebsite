@@ -36,34 +36,16 @@ XilerEmbed-1111abcd.1111abcd|
 */
 
 function EmbedGenerator() {
-  const [noEmbedMessage, setNoEmbedMessage] = React.useState(""),
-    handleChangeNoEmbedMessage = (event) => {
-      setNoEmbedMessage(event.target.value);
-    };
-  const [embedTitle, setEmbedTitle] = React.useState(""),
-    handleChangeEmbedTitle = (event) => {
-      setEmbedTitle(event.target.value);
-    };
-  const [embedTitleUrl, setEmbedTitleUrl] = React.useState(""),
-    handleChangeEmbedTitleUrl = (event) => {
-      setEmbedTitleUrl(event.target.value);
-    };
-  const [embedDescription, setEmbedDescription] = React.useState(""),
-    handleChangeEmbedDescription = (event) => {
-      setEmbedDescription(event.target.value);
-    };
-  const [embedAuthorName, setEmbedAuthorName] = React.useState(""),
-    handleChangeEmbedAuthorName = (event) => {
-      setEmbedAuthorName(event.target.value);
-    };
-  const [embedAuthorIconUrl, setEmbedAuthorIconUrl] = React.useState(""),
-    handleChangeEmbedAuthorIconUrl = (event) => {
-      setEmbedAuthorIconUrl(event.target.value);
-    };
-  const [embedAuthorUrl, setEmbedAuthorUrl] = React.useState(""),
-    handleChangeEmbedAuthorUrl = (event) => {
-      setEmbedAuthorUrl(event.target.value);
-    };
+  const [noEmbedMessage, setNoEmbedMessage] = React.useState("");
+  const [embedTitle, setEmbedTitle] = React.useState("");
+  const [embedTitleUrl, setEmbedTitleUrl] = React.useState("");
+  const [embedDescription, setEmbedDescription] = React.useState("");
+  const [embedAuthorName, setEmbedAuthorName] = React.useState("");
+  const [embedAuthorIconUrl, setEmbedAuthorIconUrl] = React.useState("");
+  const [embedAuthorUrl, setEmbedAuthorUrl] = React.useState("");
+  const [embedFooterText, setEmbedFooterText] = React.useState("");
+  const [embedFooterTime, setEmbedFooterTime] = React.useState("");
+  const [embedFooterIcon, setEmbedFooterIcon] = React.useState("");
 
   return (
     <div id="EmbedGenerator">
@@ -77,7 +59,7 @@ function EmbedGenerator() {
           <textarea
             name="noEmbed"
             id="noEmbed"
-            onChange={handleChangeNoEmbedMessage}
+            onChange={(event) => setNoEmbedMessage(event.target.value)}
             defaultValue={noEmbedMessage}
             placeholder="This content will not be embedded"
           />
@@ -87,7 +69,7 @@ function EmbedGenerator() {
               type="text"
               name="embedTitle"
               id="embedTitle"
-              onChange={handleChangeEmbedTitle}
+              onChange={(event) => setEmbedTitle(event.target.value)}
               defaultValue={embedTitle}
               placeholder="Embed title"
             />
@@ -97,14 +79,14 @@ function EmbedGenerator() {
             type="text"
             name="embedUrl"
             id="embedUrl"
-            onChange={handleChangeEmbedTitleUrl}
+            onChange={(event) => setEmbedTitleUrl(event.target.value)}
             defaultValue={embedTitleUrl}
             placeholder="Embed title url"
           />
           <textarea
             name="embedContent"
             id="embedContent"
-            onChange={handleChangeEmbedDescription}
+            onChange={(event) => setEmbedDescription(event.target.value)}
             defaultValue={embedDescription}
             placeholder="Your main embed content"
           />
@@ -113,7 +95,7 @@ function EmbedGenerator() {
             type="text"
             name="authorName"
             id="authorName"
-            onChange={handleChangeEmbedAuthorName}
+            onChange={(event) => setEmbedAuthorName(event.target.value)}
             defaultValue={embedAuthorName}
             placeholder="Author Name"
           />
@@ -121,7 +103,7 @@ function EmbedGenerator() {
             type="text"
             name="authorIconUrl"
             id="authorIconUrl"
-            onChange={handleChangeEmbedAuthorIconUrl}
+            onChange={(event) => setEmbedAuthorIconUrl(event.target.value)}
             defaultValue={embedAuthorIconUrl}
             placeholder="Author icon url"
           />
@@ -129,9 +111,35 @@ function EmbedGenerator() {
             type="text"
             name="authorUrl"
             id="authorUrl"
-            onChange={handleChangeEmbedAuthorUrl}
+            onChange={(event) => setEmbedAuthorUrl(event.target.value)}
             defaultValue={embedAuthorUrl}
             placeholder="Author url"
+          />
+          <h5>Footer:</h5>
+          <input
+            type="text"
+            name="footerText"
+            id="footerText"
+            onChange={(event) => setEmbedFooterText(event.target.value)}
+            defaultValue={embedFooterText}
+            placeholder="Footer text"
+          />
+          <input
+            type="text"
+            name="footerIcon"
+            id="footerIcon"
+            onChange={(event) => setEmbedFooterIcon(event.target.value)}
+            defaultValue={embedFooterIcon}
+            placeholder="Footer icon url"
+          />
+          <input
+            type="datetime-local"
+            name="footerTime"
+            id="footerTime"
+            onChange={(event) => setEmbedFooterTime(event.target.value)}
+            defaultValue={embedFooterTime}
+            min="1971-01-01"
+            max="9999-12-30"
           />
         </div>
         <h3>Preview:</h3>
@@ -141,7 +149,7 @@ function EmbedGenerator() {
               icon: "/assets/logoUsable-64x.png",
               name: "Xiler",
               isBot: true,
-              date: `Today at ${new Date().getHours()}:${new Date().getMinutes()}`,
+              date: new Date(),
             }}
             message={{
               noEmbed: noEmbedMessage,
@@ -157,7 +165,15 @@ function EmbedGenerator() {
                   url: embedTitleUrl,
                 },
                 description: embedDescription,
-                // "Foo bar\n ```asciidoc = Blue =\nblue above equals signs\n=====\nblue above dashes\n-----\n[Orange]\nOrange:: grey\n- hyphen\n* bullet point```",
+                image:
+                  "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
+                thumbnail:
+                  "https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg",
+                footer: {
+                  text: embedFooterText,
+                  date: embedFooterTime,
+                  icon: embedFooterIcon,
+                },
               },
             }}
           />

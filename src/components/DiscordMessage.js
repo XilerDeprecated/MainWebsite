@@ -918,11 +918,15 @@ function parseData(message, type) {
 
 function setupSplitter(splitter, className, message) {
   let data = [];
-  console.log(message)
+  message = message.split(splitter).join(`,${splitter},`).split(",");
   message.forEach((item, index) => {
     if (typeof item !== "undefined" && item !== "" && item !== null) {
       if (item === splitter && message[index + 2] === splitter) {
-        data.push(<span className={className}>{message[index + 1]}</span>);
+        data.push(
+          <span key={index} className={className}>
+            {message[index + 1]}
+          </span>
+        );
         delete message[index + 1];
         delete message[index + 2];
       } else {
@@ -983,12 +987,26 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
       )
     );
   } else {
-    let data = setupSplitter("`", "code-line", message.split(/([`])/))
+    // TODO:
+    //    FIX markdown formatting
+    // let genData = [];
+    // const splitters = [
+    //   {delimiter: "**", class: "strong"},
+    //   {delimiter: "__", class: "underline"},
+    //   {delimiter: "*", class: "italic"},
+    //   {delimiter: "~~", class: "strike-through"},
+    // ];
+    // const strong = message.split("**").join(",**,")
+    // const rand1 = Math.random() * 0;
+    // .split(`${rand1}-strong`) .split(`${rand1}-underline`)
+    // .split(`${rand1}-italic`) .split(`${rand1}-strike-through`)
+    // let msg = message.split("**").join(`${rand1}-strong**${rand1}-strong`)
+    // console.log(msg)
+
+    let data = setupSplitter("`", "code-line", message);
     if (data) {
       return data;
     } else {
-      // data = setupSplitter("**", "bold", message.split(/([])/)) // todo: fix formatting
-      console.log(data)
       return (
         <React.Fragment key={index}>
           {generateText(message).map((item) => {
@@ -1026,8 +1044,47 @@ function generateDisplayableText(message, inEmbed = false) {
   );
 }
 
+function formatNumber(numb) {
+  return ("0" + numb).slice(-2);
+}
+
+function formatDate(date) {
+  if (typeof date == "string") {
+    date = new Date(date);
+  }
+  return date.getDay() === new Date().getDay()
+    ? `Today at ${formatNumber(date.getHours())}:${formatNumber(
+        date.getMinutes()
+      )}`
+    : `${formatNumber(date.getDay())}/${formatNumber(
+        date.getMonth()
+      )}/${formatNumber(date.getYear())}`;
+}
+
+function footer(props) {
+  return (
+    <div className="footer">
+      {props.message.embed.footer.icon && (
+        <img src={props.message.embed.footer.icon} alt="" />
+      )}
+      {(props.message.embed.footer.text || props.message.embed.footer.date) && (
+        <p>
+          {props.message.embed.footer.text}
+          {props.message.embed.footer.date && (
+            <React.Fragment>
+              {props.message.embed.footer.text && <span>•</span>}
+              {formatDate(props.message.embed.footer.date)}
+            </React.Fragment>
+          )}
+        </p>
+      )}
+    </div>
+  );
+}
+
 class DiscordMessage extends React.Component {
   render() {
+    // console.log(this.props.message.embed.footer.date)
     root.style.setProperty("--embed-color", this.props.message.embed.color);
     return (
       <div className="discord-message" itemScope>
@@ -1041,7 +1098,7 @@ class DiscordMessage extends React.Component {
             <div className="prev-data">
               <p className="bot">{this.props.sender.name}</p>
               {this.props.sender.isBot && <p className="bot-tag">bot</p>}
-              <p className="date">{this.props.sender.date}</p>
+              <p className="date">{formatDate(this.props.sender.date)}</p>
             </div>
             <div className="message-content">
               {this.props.message.noEmbed && (
@@ -1078,6 +1135,13 @@ class DiscordMessage extends React.Component {
                         </a>
                       </div>
                     )}
+                    {this.props.message.embed.thumbnail && ( // TODO: FIX PROPER THUMBNAIL
+                      <img
+                        src={this.props.message.embed.thumbnail}
+                        alt=""
+                        className="thumbnail"
+                      />
+                    )}
                     <a
                       href={
                         this.props.message.embed.title.url
@@ -1100,6 +1164,16 @@ class DiscordMessage extends React.Component {
                         true
                       )}
                     </div>
+                    {this.props.message.embed.image && (
+                      <img
+                        src={this.props.message.embed.image}
+                        alt=""
+                        className="image"
+                      />
+                    )}
+                    {(this.props.message.embed.footer.text ||
+                      this.props.message.embed.footer.date) &&
+                      footer(this.props)}
                   </div>
                 </div>
               )}
