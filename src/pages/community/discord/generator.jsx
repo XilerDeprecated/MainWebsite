@@ -43,6 +43,8 @@ function EmbedGenerator() {
   const [embedAuthorName, setEmbedAuthorName] = React.useState("");
   const [embedAuthorIconUrl, setEmbedAuthorIconUrl] = React.useState("");
   const [embedAuthorUrl, setEmbedAuthorUrl] = React.useState("");
+  const [embedImageUrl, setEmbedImageUrl] = React.useState("");
+  const [embedThumbnailUrl, setEmbedThumbnailUrl] = React.useState("");
   const [embedFooterText, setEmbedFooterText] = React.useState("");
   const [embedFooterTime, setEmbedFooterTime] = React.useState("");
   const [embedFooterIcon, setEmbedFooterIcon] = React.useState("");
@@ -115,6 +117,23 @@ function EmbedGenerator() {
             defaultValue={embedAuthorUrl}
             placeholder="Author url"
           />
+          <h5>Images:</h5>
+          <input
+            type="text"
+            name="imageURL"
+            id="imageURL"
+            onChange={(event) => setEmbedImageUrl(event.target.value)}
+            defaultValue={embedImageUrl}
+            placeholder="Image URL"
+          />
+          <input
+            type="text"
+            name="thumbnailURL"
+            id="thumbnailURL"
+            onChange={(event) => setEmbedThumbnailUrl(event.target.value)}
+            defaultValue={embedThumbnailUrl}
+            placeholder="Thumbnail URL"
+          />
           <h5>Footer:</h5>
           <input
             type="text"
@@ -165,10 +184,8 @@ function EmbedGenerator() {
                   url: embedTitleUrl,
                 },
                 description: embedDescription,
-                image:
-                  "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
-                thumbnail:
-                  "https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg",
+                image: embedImageUrl,
+                thumbnail: embedThumbnailUrl,
                 footer: {
                   text: embedFooterText,
                   date: embedFooterTime,

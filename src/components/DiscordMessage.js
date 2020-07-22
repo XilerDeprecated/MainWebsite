@@ -1052,7 +1052,7 @@ function formatDate(date) {
   if (typeof date == "string") {
     date = new Date(date);
   }
-  return date.getDay() === new Date().getDay()
+  return date.getDate() === new Date().getDate()
     ? `Today at ${formatNumber(date.getHours())}:${formatNumber(
         date.getMinutes()
       )}`
@@ -1080,6 +1080,11 @@ function footer(props) {
       )}
     </div>
   );
+}
+
+function switchThumbnail(bool) {
+  root.style.setProperty("--thumbnail", bool ? 1 : 0);
+  root.style.setProperty("--not-thumbnail", !bool ? 1 : 0);
 }
 
 class DiscordMessage extends React.Component {
@@ -1135,7 +1140,8 @@ class DiscordMessage extends React.Component {
                         </a>
                       </div>
                     )}
-                    {this.props.message.embed.thumbnail && ( // TODO: FIX PROPER THUMBNAIL
+                    {switchThumbnail(Boolean(this.props.message.embed.thumbnail))}
+                    {this.props.message.embed.thumbnail && (
                       <img
                         src={this.props.message.embed.thumbnail}
                         alt=""

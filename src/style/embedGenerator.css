@@ -6,6 +6,8 @@
 
 :root {
   --embed-color: #4f545c;
+  --not-thumbnail: 1;
+  --thumbnail: 0;
 }
 
 #EmbedGenerator {
@@ -160,7 +162,7 @@ a:hover {
 .description {
   /* min-height: 38px; */
   min-width: 34px;
-  width: calc(100% - 72px);
+  width: calc(100% - 80px);
   max-width: 516px;
   height: fit-content;
   word-break: break-all;
@@ -186,7 +188,8 @@ a:hover {
 .embed-content {
   float: left;
   /* min-height: 38px; */
-  min-width: 34px;
+  min-width: calc(34px * var(--not-thumbnail) + 512px * var(--thumbnail));
+  min-height: calc(80px * var(--thumbnail));
   /* width: calc(100% - 4px); */
   padding: 8px 16px 16px 12px;
   height: 100%;
@@ -215,6 +218,7 @@ a:hover {
   position: relative;
   margin: 0 0 10px 0;
   padding: 0;
+  width: calc(100% - 80px);
 }
 
 .author img {
@@ -235,6 +239,7 @@ a:hover {
   color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .author a:hover {
@@ -347,6 +352,70 @@ a:hover {
   /* border: 0 2px 0 2px solid #202225; */
 }
 
+.footer {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.footer img {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+}
+
+.footer img:hover {
+  filter: none;
+  cursor: default;
+}
+
+.footer p,
+.footer span {
+  position: relative;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+}
+
+.footer p span {
+  margin: 0 4px;
+}
+
+.thumbnail {
+  position: absolute !important;
+  float: right !important;
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 3px !important;
+  margin: 0 !important;
+  top: 0 !important;
+  margin: 10px 10px 0 calc(516px - 76px) !important;
+}
+
+.image,
+.thumbnail {
+  display: block !important;
+}
+
+.image {
+  position: relative !important;
+  left: 0 !important;
+  width: 354px !important;
+  height: 300px !important;
+  border-radius: 4px !important;
+}
+
+.thumbnail:hover,
+.image:hover {
+  filter: none !important;
+}
+
 /* Input */
 #inputs {
   color: var(--text-color);
@@ -384,6 +453,7 @@ a:hover {
   justify-content: space-between;
   position: relative;
   width: 80%;
+  white-space: nowrap;
 }
 
 #inputs input,
@@ -398,60 +468,10 @@ a:hover {
   align-items: center;
 }
 
-.footer {
-  height: 20px;
-  display: flex;
-  align-items: center;
-  margin-top: 8px;
-  position: relative;
-}
-
-.footer img {
-  position: relative;
-  top: 0;
-  left: 0;
-  margin-right: 8px;
-  width: 20px;
-  height: 20px;
-}
-
-.footer img:hover {
-  filter: none;
-  cursor: default;
-}
-
-.footer p,
-.footer span {
-  position: relative;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  font-weight: 500;
-}
-
-.footer p span {
-  margin: 0 4px;
-}
-
-.thumbnail {
-  width: 80px !important;
-  height: 80px !important;
-  border-radius: 3px !important;
-  left: calc(100% - 80px) !important;
-}
-
-.image, .thumbnail {
-  position: relative !important;
-  display: block !important;
-}
-
-.image {
-  position: relative !important;
-  left: 0 !important;
-  width: 354px !important;
-  height: 300px !important;
-  border-radius: 4px !important;
-}
-
-.thumbnail:hover, .image:hover {
-  filter: none !important;
+@media (max-width: 600px) {
+  #inputs textarea,
+  #inputs input,
+  .title {
+    width: 100%;
+  }
 }
