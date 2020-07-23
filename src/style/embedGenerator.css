@@ -153,10 +153,10 @@ a:hover {
 }
 
 .no-embed {
+  height: fit-content;
+  white-space: pre-line;
   word-break: break-all;
-  white-space: normal;
   margin-bottom: 5px;
-  /* width: ; */
 }
 
 .description {
@@ -165,16 +165,11 @@ a:hover {
   width: calc(100% - 80px);
   max-width: 516px;
   height: fit-content;
+  white-space: pre-line;
   word-break: break-all;
   font-size: 0.875rem;
   line-height: 1.125rem;
   font-weight: 400;
-  white-space: pre-line;
-}
-
-.description p {
-  margin: 0;
-  padding: 0;
 }
 
 .embed-color {
@@ -186,6 +181,7 @@ a:hover {
 }
 
 .embed-content {
+  position: relative;
   float: left;
   /* min-height: 38px; */
   min-width: calc(34px * var(--not-thumbnail) + 512px * var(--thumbnail));
@@ -207,11 +203,6 @@ a:hover {
   font-size: 12px;
   color: #72767d;
   cursor: default;
-}
-
-.no-embed p {
-  margin: 0;
-  padding: 0;
 }
 
 .author {
@@ -474,4 +465,91 @@ a:hover {
   .title {
     width: 100%;
   }
+}
+
+.fields {
+  position: relative;
+  max-width: 432px;
+  overflow: hidden;
+  height: fit-content;
+}
+
+.field {
+  float: left;
+  position: relative;;
+  margin-top: 5px;
+  width: 100%;
+  min-width: 129px;
+}
+
+.field h5 {
+  font-weight: 600;
+  margin: 0 0 2px 0;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  min-width: 0;
+  unicode-bidi: plaintext;
+  text-align: left;
+  word-break: break-all;
+}
+
+.field p {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  white-space: pre-line;
+  min-width: 0;
+  unicode-bidi: plaintext;
+  text-align: left;
+  margin: 0;
+  vertical-align: baseline;
+  word-break: break-all;
+}
+
+.inline {
+  /* width: 170px; */
+  width: calc(100% / 3 - 15px);
+  margin-right: 5px;
+}
+
+.fieldVote {
+  display: flex;
+  justify-self: start;
+}
+
+.fieldVote button {
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* color: var(--text-color); */
+  fill: var(--text-color);
+  outline: none;
+  opacity: 0.8;
+  transition: opacity 0.1s ease;
+}
+
+.fieldVote button:hover {
+  opacity: 1;
+}
+
+.fieldVote button:active {
+  border: 1px solid var(--text-color);
+}
+
+
+.fieldVote button:first-child {
+  margin: 0 4px 0 0;
+  background-color: rgba(25, 233, 18, 1);
+}
+
+.fieldVote button:nth-child(2) {
+  background-color: rgba(255, 13, 13, 1);
 }

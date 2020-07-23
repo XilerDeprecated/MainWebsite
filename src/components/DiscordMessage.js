@@ -953,7 +953,7 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
       "glsl",
       "ini",
       "json",
-      "md", // TODO: FIX MARKDOWN SUPPORT
+      "md",
       "ml",
       "prolog",
       "py",
@@ -987,8 +987,7 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
       )
     );
   } else {
-    // TODO:
-    //    FIX markdown formatting
+    // TODO: FIX markdown formatting
     // let genData = [];
     // const splitters = [
     //   {delimiter: "**", class: "strong"},
@@ -1087,6 +1086,15 @@ function switchThumbnail(bool) {
   root.style.setProperty("--not-thumbnail", !bool ? 1 : 0);
 }
 
+function Field(props) {
+  return (
+    <div key={props.index} className={`field ${props.inline && "inline"}`}>
+      <h5>{props.name}</h5>
+      <p>{props.value}</p>
+    </div>
+  );
+}
+
 class DiscordMessage extends React.Component {
   render() {
     // console.log(this.props.message.embed.footer.date)
@@ -1140,7 +1148,9 @@ class DiscordMessage extends React.Component {
                         </a>
                       </div>
                     )}
-                    {switchThumbnail(Boolean(this.props.message.embed.thumbnail))}
+                    {switchThumbnail(
+                      Boolean(this.props.message.embed.thumbnail)
+                    )}
                     {this.props.message.embed.thumbnail && (
                       <img
                         src={this.props.message.embed.thumbnail}
@@ -1170,6 +1180,11 @@ class DiscordMessage extends React.Component {
                         true
                       )}
                     </div>
+                    {this.props.message.embed.fields && (
+                      <div className="fields">
+                        {this.props.message.embed.fields}
+                      </div>
+                    )}
                     {this.props.message.embed.image && (
                       <img
                         src={this.props.message.embed.image}
@@ -1192,3 +1207,4 @@ class DiscordMessage extends React.Component {
 }
 
 export default DiscordMessage;
+export { Field };

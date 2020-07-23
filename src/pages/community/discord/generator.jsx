@@ -9,7 +9,7 @@ import "../../../style/main.css";
 import "../../../style/embedGenerator.css";
 
 import ColorPicker from "../../../components/ColorPicker";
-import DiscordMessage from "../../../components/DiscordMessage";
+import DiscordMessage, { Field } from "../../../components/DiscordMessage";
 
 /*
 XilerEmbed-1111abcd.1111abcd|
@@ -48,6 +48,8 @@ function EmbedGenerator() {
   const [embedFooterText, setEmbedFooterText] = React.useState("");
   const [embedFooterTime, setEmbedFooterTime] = React.useState("");
   const [embedFooterIcon, setEmbedFooterIcon] = React.useState("");
+  const [embedFieldCount, setEmbedFieldCount] = React.useState(0);
+  const [embedFields, setEmbedFields] = React.useState([]);
 
   return (
     <div id="EmbedGenerator">
@@ -160,6 +162,53 @@ function EmbedGenerator() {
             min="1971-01-01"
             max="9999-12-30"
           />
+          <h5>Fields: ({embedFieldCount}/25)</h5>
+          <div className="fieldVote">
+            <button
+              onClick={() => {
+                if (parseInt(embedFieldCount) < 25) {
+                  setEmbedFields([
+                    ...embedFields,
+                    Field({
+                      inline: embedFieldCount % 4,
+                      name: "foo",
+                      value: "bar",
+                      index: embedFieldCount,
+                    }),
+                  ]);
+                  return setEmbedFieldCount(parseInt(embedFieldCount) + 1);
+                }
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+              >
+                <path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" />
+              </svg>
+            </button>
+            <button
+              onClick={() => {
+                if (parseInt(embedFieldCount) > 0) {
+                  let _data = embedFields;
+                  _data.splice(embedFieldCount - 1, 1);
+                  setEmbedFields(_data);
+                  return setEmbedFieldCount(parseInt(embedFieldCount) - 1);
+                }
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+              >
+                <path d="M0 9h24v6h-24z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <h3>Preview:</h3>
         <div id="preview">
@@ -183,6 +232,7 @@ function EmbedGenerator() {
                   text: embedTitle,
                   url: embedTitleUrl,
                 },
+                fields: embedFields,
                 description: embedDescription,
                 image: embedImageUrl,
                 thumbnail: embedThumbnailUrl,
