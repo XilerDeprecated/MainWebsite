@@ -1182,7 +1182,7 @@ class DiscordMessage extends React.Component {
                     </div>
                     {this.props.message.embed.fields && (
                       <div className="fields">
-                        {this.props.message.embed.fields}
+                        {this.props.message.embed.fields.map(data => Field(data))}
                       </div>
                     )}
                     {this.props.message.embed.image && (
@@ -1207,4 +1207,3 @@ class DiscordMessage extends React.Component {
 }
 
 export default DiscordMessage;
-export { Field };

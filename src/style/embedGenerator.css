@@ -476,7 +476,7 @@ a:hover {
 
 .field {
   float: left;
-  position: relative;;
+  position: relative;
   margin-top: 5px;
   width: 100%;
   min-width: 129px;
@@ -517,6 +517,7 @@ a:hover {
   justify-self: start;
 }
 
+.field-props-wrapper button,
 .fieldVote button {
   width: 50px;
   height: 30px;
@@ -536,20 +537,38 @@ a:hover {
   transition: opacity 0.1s ease;
 }
 
+.field-props-wrapper button,
 .fieldVote button:hover {
+  cursor: pointer;
   opacity: 1;
 }
 
+.field-props-wrapper button,
 .fieldVote button:active {
   border: 1px solid var(--text-color);
 }
-
 
 .fieldVote button:first-child {
   margin: 0 4px 0 0;
   background-color: rgba(25, 233, 18, 1);
 }
 
+.field-props-wrapper button,
 .fieldVote button:nth-child(2) {
   background-color: rgba(255, 13, 13, 1);
+}
+
+.field-props-wrapper {
+  margin: 5px 0;
+  width: calc(100% - 80px);
+}
+
+.field-props-wrapper .check {
+  position: absolute;
+  min-width: 10px !important;
+  width: 20px !important;
+  margin: 2px !important;
+}
+.field-props-wrapper label {
+  margin-left: 25px;
 }

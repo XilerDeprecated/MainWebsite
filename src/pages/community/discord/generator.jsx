@@ -9,7 +9,7 @@ import "../../../style/main.css";
 import "../../../style/embedGenerator.css";
 
 import ColorPicker from "../../../components/ColorPicker";
-import DiscordMessage, { Field } from "../../../components/DiscordMessage";
+import DiscordMessage from "../../../components/DiscordMessage";
 
 /*
 XilerEmbed-1111abcd.1111abcd|
@@ -169,12 +169,13 @@ function EmbedGenerator() {
                 if (parseInt(embedFieldCount) < 25) {
                   setEmbedFields([
                     ...embedFields,
-                    Field({
-                      inline: embedFieldCount % 4,
-                      name: "foo",
-                      value: "bar",
+
+                    {
+                      inline: 0,
+                      name: null,
+                      value: null,
                       index: embedFieldCount,
-                    }),
+                    },
                   ]);
                   return setEmbedFieldCount(parseInt(embedFieldCount) + 1);
                 }
@@ -209,6 +210,68 @@ function EmbedGenerator() {
               </svg>
             </button>
           </div>
+          {embedFields && (
+            <div className="field-props">
+              {embedFields.map((field, index) => (
+                <div key={index} className="field-props-wrapper">
+                  <input
+                    type="text"
+                    name={`field${index + 1}-name`}
+                    id={`field${index + 1}-name`}
+                    onChange={(event) => {
+                      let _data = embedFields.slice();
+                      _data[index].name = event.target.value;
+                      return setEmbedFields(_data);
+                    }}
+                    defaultValue={field.name}
+                    placeholder={`The name for the ${index + 1}'th field`}
+                  />
+                  <input
+                    className="check"
+                    type="checkbox"
+                    name={`field${index + 1}-inline`}
+                    id={`field${index + 1}-inline`}
+                    onChange={(event) => {
+                      let _data = embedFields.slice();
+                      _data[index].inline = event.target.checked ? 1 : 0;
+                      return setEmbedFields(_data);
+                    }}
+                    defaultValue={field.name}
+                  />
+                  <label htmlFor={`field${index + 1}-inline`}>inline</label>
+                  <textarea
+                    type="text"
+                    name={`field${index + 1}-value`}
+                    id={`field${index + 1}-value`}
+                    onChange={(event) => {
+                      let _data = embedFields.slice();
+                      _data[index].value = event.target.value;
+                      return setEmbedFields(_data);
+                    }}
+                    defaultValue={field.value}
+                    placeholder={`The value for the ${index + 1}'th field`}
+                  />
+                  {/* <button // TODO: FIX WORKING REMOVE BUTTON
+                    onClick={() => {
+                      let _data = embedFields.slice();
+                      _data.splice(index, 1);
+                      setEmbedFields(_data);
+                      return setEmbedFieldCount(parseInt(embedFieldCount) - 1);
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M0 9h24v6h-24z" />
+                    </svg>
+                  </button> */}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <h3>Preview:</h3>
         <div id="preview">
