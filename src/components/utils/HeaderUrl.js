@@ -12,7 +12,7 @@ import HoverSection from './HoverSection';
 class HeaderUrl extends React.Component {
     render() {
         return (
-            <li onMouseOver={this.hoverHandler} onMouseOut={this.outHandler} id={this.props.id}>
+            <li onMouseOver={this.hoverHandler} onMouseOut={this.outHandler} id={this.props.id} className="hoverable">
                 <Link to={this.props.url}>{this.props.name}</Link>
                 <HoverSection id={`${this.props.id}-section`} data={this.props.data} />
             </li>
