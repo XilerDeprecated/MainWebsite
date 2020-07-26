@@ -172,8 +172,8 @@ function EmbedGenerator() {
 
                     {
                       inline: 0,
-                      name: null,
-                      value: null,
+                      name: "",
+                      value: "",
                       index: embedFieldCount,
                     },
                   ]);

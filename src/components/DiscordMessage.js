@@ -1090,7 +1090,7 @@ function Field(props) {
   return (
     <div key={props.index} className={`field ${props.inline && "inline"}`}>
       <h5>{props.name}</h5>
-      <p>{props.value}</p>
+      {generateDisplayableText(props.value)}
     </div>
   );
 }
