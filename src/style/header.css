@@ -159,8 +159,6 @@ header ul li {
   display: block;
   padding: 0;
   margin: 0;
-  width: calc(50vw / 5);
-  min-width: 150px;
   height: 80px;
   text-align: center;
   display: flex;
