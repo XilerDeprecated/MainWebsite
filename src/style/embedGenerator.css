@@ -493,7 +493,7 @@ a:hover {
   word-break: break-all;
 }
 
-.field p {
+.field {
   font-size: 0.875rem;
   line-height: 1.125rem;
   font-weight: 400;
@@ -503,6 +503,8 @@ a:hover {
   text-align: left;
   margin: 0;
   vertical-align: baseline;
+  width: fit-content;
+  white-space: pre-line;
   word-break: break-all;
 }
 
