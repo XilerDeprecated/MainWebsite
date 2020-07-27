@@ -519,6 +519,10 @@ a:hover {
   justify-self: start;
 }
 
+.field-props-wrapper {
+  position: relative;
+}
+
 .field-props-wrapper button,
 .fieldVote button {
   width: 50px;
@@ -571,6 +575,7 @@ a:hover {
   width: 20px !important;
   margin: 2px !important;
 }
+
 .field-props-wrapper label {
   margin-left: 25px;
 }

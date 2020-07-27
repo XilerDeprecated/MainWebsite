@@ -251,23 +251,6 @@ function EmbedGenerator() {
                     defaultValue={field.value}
                     placeholder={`The value for the ${index + 1}'th field`}
                   />
-                  {/* <button // TODO: FIX WORKING REMOVE BUTTON
-                    onClick={() => {
-                      let _data = embedFields.slice();
-                      _data.splice(index, 1);
-                      setEmbedFields(_data);
-                      return setEmbedFieldCount(parseInt(embedFieldCount) - 1);
-                    }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="17"
-                      height="17"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M0 9h24v6h-24z" />
-                    </svg>
-                  </button> */}
                 </div>
               ))}
             </div>
