@@ -1005,7 +1005,7 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
     );
     let data = setupSplitter("`", "code-line", message);
     if (data) {
-      return <div dangerouslySetInnerHTML={{ __html: data }}></div>;
+      return <div key={index} dangerouslySetInnerHTML={{ __html: data }}></div>;
     } else {
       return (
         <React.Fragment key={index}>

@@ -11,29 +11,26 @@ import "../../../style/embedGenerator.css";
 import ColorPicker from "../../../components/ColorPicker";
 import DiscordMessage from "../../../components/DiscordMessage";
 
-/*
-XilerEmbed-1111abcd.1111abcd|
-{
-    content-[Un-embedded content],
-    name-[Embed Name],
-    title-[Embed Title],
-    color-[Embed Color],
-    description-[Embed description],
-    url-[Embed url],
-    author|{
-        name-[Author name],
-        icon_url-[Author icon url],
-        url-[Author url]
-    },
-    thumbnail_url-[Embed Thumbnail Url],
-    image_url-[Embed Image Url],
-    footer|{
-        text-[Footer text],
-        timestamp-[Footer Timestamp],
-        icon_url-[Footer icon url]
-    }
+const root = document.documentElement;
+
+function CopyToClipboard(id) {
+  var range = document.createRange();
+  range.selectNode(document.getElementById(id));
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
 }
-*/
+
+function makeId(length) {
+  let result = "";
+  let characters = "abcdef0123456789";
+  let charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 
 function EmbedGenerator() {
   const [noEmbedMessage, setNoEmbedMessage] = React.useState("");
@@ -50,6 +47,8 @@ function EmbedGenerator() {
   const [embedFooterIcon, setEmbedFooterIcon] = React.useState("");
   const [embedFieldCount, setEmbedFieldCount] = React.useState(0);
   const [embedFields, setEmbedFields] = React.useState([]);
+
+  const [outputType, setOutputType] = React.useState("XilerMessage");
 
   return (
     <div id="EmbedGenerator">
@@ -291,7 +290,99 @@ function EmbedGenerator() {
             }}
           />
         </div>
-        <div id="output"></div>
+        <div id="output">
+          <h3>Output:</h3>
+          <ul>
+            <li>
+              <button
+                onClick={() => {
+                  return setOutputType("XilerMessage");
+                }}
+              >
+                Xiler Message
+              </button>
+            </li>
+            <li>
+              <button onClick={() => setOutputType("JSON")}>JSON</button>
+            </li>
+            <li className="copy">
+              <button onClick={() => CopyToClipboard("output-data-wrapper")}>
+                Copy
+              </button>
+            </li>
+          </ul>
+          <div id="output-data">
+            <div id="output-data-wrapper">
+              {outputType === "XilerMessage" && (
+                <React.Fragment>
+                  XilerMessage-{makeId(4)}.{makeId(8)}|{"{"}
+                  {noEmbedMessage && <p>content-[{noEmbedMessage}],</p>}
+                  {embedDescription && (
+                    <React.Fragment>
+                      {embedTitle && <p>title-[{embedTitle}],</p>}
+                      <p>
+                        color-[{root.style.getPropertyValue("--embed-color")}],
+                      </p>
+                      {embedDescription && (
+                        <p>description-[{embedDescription}],</p>
+                      )}
+                      {embedTitleUrl && <p>url-[{embedTitleUrl}],</p>}
+                      {embedAuthorName && (
+                        <div className="out-sub-obj">
+                          author|{"{"}
+                          {embedAuthorName && <p>name-[{embedAuthorName}],</p>}
+                          {embedAuthorIconUrl && (
+                            <p>icon_url-[{embedAuthorIconUrl}],</p>
+                          )}
+                          {embedAuthorUrl && <p>url-[{embedAuthorUrl}],</p>}
+                          {"}"}
+                        </div>
+                      )}
+                      {embedThumbnailUrl && (
+                        <p>thumbnail_url-[{embedThumbnailUrl}],</p>
+                      )}
+                      {embedImageUrl && <p>image_url-[{embedImageUrl}],</p>}
+                      {(embedFooterText || embedFooterTime) && (
+                        <div className="out-sub-obj">
+                          footer|{"{"}
+                          {embedFooterText && <p>text-[{embedFooterText}],</p>}
+                          {embedFooterTime && (
+                            <p>timestamp-[{embedFooterTime}],</p>
+                          )}
+                          {embedFooterIcon && (
+                            <p>icon_url-[{embedFooterIcon}],</p>
+                          )}
+                          {"}"}
+                        </div>
+                      )}
+                      {embedFields && (
+                        <div className="out-sub-obj">
+                          fields-[
+                          {embedFields.map((field, index) => (
+                            <React.Fragment>
+                              {(field.value || field.name) && (
+                                <div key={index} className="out-sub-obj">
+                                  field|{"{"}
+                                  {field.name && <p>name-[{field.name}],</p>}
+                                  {field.value && <p>value-[{field.value}],</p>}
+                                  <p>inline-[{field.inline}],</p>
+                                  {"}"}
+                                </div>
+                              )}
+                            </React.Fragment>
+                          ))}
+                          ]
+                        </div>
+                      )}
+                    </React.Fragment>
+                  )}
+                  {"}"}
+                </React.Fragment>
+              )}
+              {outputType === "JSON" && <React.Fragment>JSON</React.Fragment>}
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   );
