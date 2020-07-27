@@ -165,6 +165,7 @@ a:hover {
   width: calc(100% - 80px);
   max-width: 516px;
   height: fit-content;
+  width: fit-content;
   white-space: pre-line;
   word-break: break-all;
   font-size: 0.875rem;
@@ -504,6 +505,7 @@ a:hover {
   margin: 0;
   vertical-align: baseline;
   width: fit-content;
+  height: fit-content;
   white-space: pre-line;
   word-break: break-all;
 }

@@ -987,24 +987,25 @@ function generateTextUsable(message, inEmbed = false, index = 0) {
       )
     );
   } else {
-    // TODO: FIX markdown formatting
-    // let genData = [];
-    // const splitters = [
-    //   {delimiter: "**", class: "strong"},
-    //   {delimiter: "__", class: "underline"},
-    //   {delimiter: "*", class: "italic"},
-    //   {delimiter: "~~", class: "strike-through"},
-    // ];
-    // const strong = message.split("**").join(",**,")
-    // const rand1 = Math.random() * 0;
-    // .split(`${rand1}-strong`) .split(`${rand1}-underline`)
-    // .split(`${rand1}-italic`) .split(`${rand1}-strike-through`)
-    // let msg = message.split("**").join(`${rand1}-strong**${rand1}-strong`)
-    // console.log(msg)
-
+    message = message.replace(
+      /\*{2}([\w\n.]+)\*{2}/g,
+      '<span class="strong">$1</span>'
+    );
+    message = message.replace(
+      /\*([\w\n.]+)\*/g,
+      '<span class="italic">$1</span>'
+    );
+    message = message.replace(
+      /_{2}([\w\n.]+)_{2}/g,
+      '<span class="underline">$1</span>'
+    );
+    message = message.replace(
+      /~{2}([\w\n.]+)~{2}/g,
+      '<span class="strike-through">$1</span>'
+    );
     let data = setupSplitter("`", "code-line", message);
     if (data) {
-      return data;
+      return <div dangerouslySetInnerHTML={{ __html: data }}></div>;
     } else {
       return (
         <React.Fragment key={index}>
@@ -1182,7 +1183,9 @@ class DiscordMessage extends React.Component {
                     </div>
                     {this.props.message.embed.fields && (
                       <div className="fields">
-                        {this.props.message.embed.fields.map(data => Field(data))}
+                        {this.props.message.embed.fields.map((data) =>
+                          Field(data)
+                        )}
                       </div>
                     )}
                     {this.props.message.embed.image && (
