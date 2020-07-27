@@ -359,7 +359,7 @@ function EmbedGenerator() {
                         <div className="out-sub-obj">
                           fields-[
                           {embedFields.map((field, index) => (
-                            <React.Fragment>
+                            <React.Fragment key={index}>
                               {(field.value || field.name) && (
                                 <div key={index} className="out-sub-obj">
                                   field|{"{"}
@@ -379,7 +379,92 @@ function EmbedGenerator() {
                   {"}"}
                 </React.Fragment>
               )}
-              {outputType === "JSON" && <React.Fragment>JSON</React.Fragment>}
+              {outputType === "JSON" && (
+                <React.Fragment>
+                  {"{"}
+                  {noEmbedMessage && <p>"content": "{noEmbedMessage}"</p>}
+                  {embedDescription && (
+                    <div className="out-sub-obj json">
+                      "embed": {"{"}
+                      <div className="out-sub-obj json">
+                        {embedTitle && <p>"title": "{embedTitle}"</p>}
+                        {embedDescription && (
+                          <p>"description": "{embedDescription}"</p>
+                        )}
+                        {embedTitleUrl && <p>"url": "{embedTitleUrl}"</p>}
+                        {embedAuthorName && (
+                          <React.Fragment>
+                            "author": {"{"}
+                            <div className="out-sub-obj json">
+                              <p>"name": "{embedAuthorName}"</p>
+                              <p>"icon_url": "{embedAuthorIconUrl}"</p>
+                              <p>"url": "{embedAuthorUrl}"</p>
+                            </div>
+                            {"}\n"}
+                          </React.Fragment>
+                        )}
+                        {embedThumbnailUrl && (
+                          <React.Fragment>
+                            "thumbnail": {"{"}
+                            <div className="out-sub-obj json">
+                              <p>"url": "{embedThumbnailUrl}"</p>
+                            </div>
+                            {"}\n"}
+                          </React.Fragment>
+                        )}
+                        {embedImageUrl && (
+                          <React.Fragment>
+                            "image": {"{"}
+                            <div className="out-sub-obj json">
+                              <p>"url": "{embedImageUrl}"</p>
+                            </div>
+                            {"}\n"}
+                          </React.Fragment>
+                        )}
+                        {embedFooterText && (
+                          <React.Fragment>
+                            "footer": {"{"}
+                            <div className="out-sub-obj json">
+                              <p>"text": "{embedFooterText}"</p>
+                              <p>"icon_url": "{embedFooterIcon}"</p>
+                            </div>
+                            {"}\n"}
+                          </React.Fragment>
+                        )}
+                        {embedFooterTime && (
+                          <p>"timestamp": "{embedFooterTime}"</p>
+                        )}
+                        {embedFields && (
+                          <React.Fragment>
+                            "fields": [
+                            {embedFields.map((field, index) => (
+                              <React.Fragment key={index}>
+                                {(field.name || field.value) && (
+                                  <div className="out-sub-obj json">
+                                    {"{"}
+                                    <div className="out-sub-obj json">
+                                      <p>"name": "{field.name}"</p>
+                                      <p>"value": "{field.value}"</p>
+                                      <p>
+                                        "inline":{" "}
+                                        {field.inline === 1 ? "true" : "false"}
+                                      </p>
+                                    </div>
+                                    {"}\n"}
+                                  </div>
+                                )}
+                              </React.Fragment>
+                            ))}
+                            ]
+                          </React.Fragment>
+                        )}
+                      </div>
+                      {"}\n"}
+                    </div>
+                  )}
+                  {"}\n"}
+                </React.Fragment>
+              )}
             </div>
           </div>
         </div>

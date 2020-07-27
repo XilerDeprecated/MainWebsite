@@ -644,3 +644,7 @@ a:hover {
 .copy {
   width: 100px !important;
 }
+
+.json p {
+  margin: 0 !important;
+}
