@@ -1098,8 +1098,6 @@ function Field(props) {
 
 class DiscordMessage extends React.Component {
   render() {
-    // console.log(this.props.message.embed.footer.date)
-    root.style.setProperty("--embed-color", this.props.message.embed.color);
     return (
       <div className="discord-message" itemScope>
         <div className="discord-message-wrapper">

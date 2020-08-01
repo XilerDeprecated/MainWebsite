@@ -13,12 +13,7 @@ const root = document.documentElement;
 class ColorPicker extends React.Component {
   state = {
     displayColorPicker: false,
-    color: {
-      r: "241",
-      g: "112",
-      b: "19",
-      a: "1",
-    },
+    color: root.style.getPropertyValue(this.props.item),
   };
 
   handleClick = () => {
@@ -30,8 +25,8 @@ class ColorPicker extends React.Component {
   };
 
   handleChange = (color) => {
-    this.setState({ color: color.rgb });
-    root.style.setProperty(this.props.item, color.hex);
+    this.setState({ color: color.hex });
+    root.style.setProperty(this.props.item, this.state.color);
   };
 
   render() {
