@@ -150,6 +150,7 @@ header ul {
   align-items: center;
   width: 40vw;
   min-width: 700px;
+  max-width: 800px;
   height: 80px;
 }
 
@@ -160,13 +161,13 @@ header ul li {
   padding: 0;
   margin: 0;
   height: 80px;
+  min-width: calc(700px / 4);
+  width: calc(40vw / 4);
+  max-width: calc(800px / 4);
   text-align: center;
   display: flex;
   align-items: center;
-}
-
-header ul li.hoverable {
-  width: 140px;
+  justify-content: center;
 }
 
 header ul li a {
@@ -175,7 +176,7 @@ header ul li a {
   color: var(--text-color);
   transition: all 0.25s ease;
   padding: 25px 15px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 header ul li a:hover {
@@ -189,7 +190,9 @@ header ul li a:hover {
   display: none;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  width: 140px;
+  min-width: calc(700px / 4);
+  width: calc(40vw / 4);
+  max-width: calc(800px / 4);
 }
 
 .hoverSection a {
@@ -276,4 +279,20 @@ header ul li a:hover {
   .hamburger {
     display: inline-block;
   }
+}
+
+.arrow {
+  border: solid var(--text-color);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.fill {
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }

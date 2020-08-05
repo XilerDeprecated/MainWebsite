@@ -93,8 +93,9 @@ const Header = () => {
         />
         <li>
           <a href="https://buy.xiler.net/">Pricing</a>
+          <i className="arrow fill"></i>
         </li>
-        <HeaderUrl
+        {/* <HeaderUrl
           name="Login"
           id="login"
           url="/login"
@@ -105,7 +106,7 @@ const Header = () => {
               route: true,
             },
           ]}
-        />
+        /> */}
       </ul>
     </header>
   );
