@@ -10,6 +10,13 @@ import { Link } from "react-router-dom";
 import HoverSection from "./HoverSection";
 
 class HeaderUrl extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      width: window.innerWidth,
+    };
+  }
+
   render() {
     return (
       <li
@@ -19,10 +26,14 @@ class HeaderUrl extends React.Component {
         className="hoverable"
       >
         <Link to={this.props.url}>{this.props.name}</Link>
-        <i className="arrow down"></i>
+        {this.state.width > 1200 && <i className="arrow down"></i>}
         <HoverSection id={`${this.props.id}-section`} data={this.props.data} />
       </li>
     );
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", () => this.setState({width: window.innerWidth}));
   }
 
   hoverHandler = () => {

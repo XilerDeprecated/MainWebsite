@@ -243,6 +243,8 @@ header ul li a:hover {
     display: block;
     position: absolute;
     width: 100vw !important;
+    max-width: 100vw;
+    min-width: 100vw;
     left: 0;
     height: fit-content;
     border-bottom: 3px solid var(--background-color-very-dark);
@@ -255,18 +257,20 @@ header ul li a:hover {
     top: 80px;
   }
 
-  header ul li a {
-    width: 100vw;
-  }
-
   header ul li {
-    display: block;
-    width: 100vw;
+    position: relative;
     display: flex;
+    max-width: 100vw;
+    min-width: 100vw;
     align-items: center;
     background-color: var(--background-color-darker);
     transition: background-color 0.25s ease-in-out;
   }
+
+  header ul li .hoverable::after {
+    content: none;
+  }
+
 
   header ul li:hover {
     background-color: var(--background-color);
