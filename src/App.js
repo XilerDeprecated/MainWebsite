@@ -20,6 +20,7 @@ const Layout = lazy(() => import("./layouts/Layout"));
 // Pages:
 const HomePage = lazy(() => import("./pages/"));
 const PageNotFound = lazy(() => import("./pages/404"));
+const Services = lazy(() => import("./pages/services/"));
 
 // Discord Bot community pages:
 const EmbedGenerator = lazy(() =>
@@ -60,6 +61,15 @@ class App extends React.Component {
               render={() => (
                 <Layout title="404 - Page not found" url="404">
                   <PageNotFound />
+                </Layout>
+              )}
+            />
+            <Route
+              exact
+              path="/services"
+              render={() => (
+                <Layout title="Xiler Services" url="services">
+                  <Services />
                 </Layout>
               )}
             />

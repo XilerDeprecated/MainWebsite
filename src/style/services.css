@@ -1,0 +1,22 @@
+/*
+ ©Xiler - Arthurdw
+ Xiler is under a CC0-1.0 License (View the license here: https://legal.xiler.net/license)
+ By proceeding to this site you agree with our ToS. (View the tos here: https://legal.xiler.net/tos)
+*/
+
+#content {
+    margin-top: 80px;
+    min-height: calc(100vh - 330px);
+}
+
+#content .what {
+    margin: 150px 0 80px 0;
+}
+
+#content .what h1, 
+#content .what h3 {
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}

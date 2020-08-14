@@ -50,11 +50,11 @@ const Header = () => {
               url: "/services/minecraft",
               route: true,
             },
-            {
-              name: "CS:GO Servers",
-              url: "/services/cs",
-              route: true,
-            },
+            // {
+            //   name: "CS:GO Servers",
+            //   url: "/services/cs",
+            //   route: true,
+            // },
             {
               name: "Discord Bots",
               url: "/services/discord",
