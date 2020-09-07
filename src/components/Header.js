@@ -42,13 +42,19 @@ const Header = () => {
           data={[
             {
               name: "Websites",
-              url: "/services/websites",
-              route: true,
+              // url: "/services/websites",
+              // route: true,
+              url: "http://dc.xiler.net",
+              target: "_blanc",
+              route: false,
             },
             {
               name: "Minecraft Servers",
-              url: "/services/minecraft",
-              route: true,
+              // url: "/services/minecraft",
+              // route: true,
+              url: "http://dc.xiler.net",
+              target: "_blanc",
+              route: false,
             },
             // {
             //   name: "CS:GO Servers",
@@ -57,8 +63,11 @@ const Header = () => {
             // },
             {
               name: "Discord Bots",
-              url: "/services/discord",
-              route: true,
+              // url: "/services/discord",
+              // route: true,
+              url: "http://dc.xiler.net",
+              target: "_blanc",
+              route: false,
             },
           ]}
         />
@@ -67,32 +76,37 @@ const Header = () => {
           id="li-community"
           url="/community/"
           data={[
+            // {
+            //   name: "Forums",
+            //   url: "https://forum.xiler.net/",
+            //   target: "_self",
+            //   route: false,
+            // },
             {
-              name: "Forums",
-              url: "https://forum.xiler.net/",
-              target: "_self",
+              name: "Servers",
+              // url: "/community/servers",
+              // route: true,
+              url: "http://dc.xiler.net",
+              target: "_blanc",
               route: false,
             },
             {
-              name: "Servers",
-              url: "/community/servers",
-              route: true,
-            },
-            {
               name: "Discord",
-              url: "https://dc.xiler.net",
+              url: "http://dc.xiler.net",
               target: "_blanc",
               route: false,
             },
             {
               name: "Discord Bot",
-              url: "/community/discord",
-              route: true,
+              url: "http://aqua.xiler.net",
+              target: "_self",
+              route: false,
             },
           ]}
         />
         <li>
-          <a href="https://buy.xiler.net/">Pricing</a>
+          {/* <a href="http://buy.xiler.net/">Pricing</a> */}
+          <a href="http://dc.xiler.net">Pricing</a>
           <i className="arrow fill"></i>
         </li>
         {/* <HeaderUrl
